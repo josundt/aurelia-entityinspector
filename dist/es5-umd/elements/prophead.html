@@ -1,0 +1,14 @@
+<template>
+    <require from="./prophead.css"></require>
+    <require from="../valueconverters/entitykind"></require>
+    <require from="./propname"></require>
+    <require from="./propvalue"></require>
+    <ei-propname
+        value.bind="name"
+        class="${name==='$id'?'id-prop':''}"></ei-propname>
+    <ei-propvalue
+        value.bind="value"
+        kind.bind="kind"
+        click.delegate="onValueClicked()"
+        class="${kind | entitykind}"></ei-propvalue>
+</template>

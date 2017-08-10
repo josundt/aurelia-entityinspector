@@ -1,0 +1,35 @@
+{
+  "name": "aurelia-entityinspector",
+  "version": "1.0.0",
+  "description": "An aurelia plugin to view JavaScript or JSON values",
+  "main": "./dist/es5-umd/index.js",
+  "module": "./dist/es5-esm/index.js",
+  "es2015": "./dist/es2015-esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.es5-amd.json && tsc -p tsconfig.es5-cjs.json && tsc -p tsconfig.es5-umd.json && tsc -p tsconfig.es5-esm.json && tsc -p tsconfig.es2015-esm.json && node ./build/build.js",
+    "clean": "rimraf ./dist/**/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josundt/aurelia-entityinspector.git"
+  },
+  "keywords": [],
+  "author": "Jørn Andre Sundt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josundt/aurelia-entityinspector/issues"
+  },
+  "homepage": "https://github.com/josundt/aurelia-entityinspector#readme",
+  "devDependencies": {
+    "aurelia-framework": "1.1.4",
+    "glob": "7.1.2",
+    "rimraf": "2.6.1",
+    "tslint": "5.6.0",
+    "tslint-language-service": "0.9.6",
+    "typescript": "2.4.2"
+  },
+  "peerDependencies": {
+    "aurelia-framework": "^1.1.4"
+  }
+}

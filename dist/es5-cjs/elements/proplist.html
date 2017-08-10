@@ -1,0 +1,15 @@
+<template>
+    <require from="./proplist.css"></require>
+    <require from="../valueconverters/entitykind"></require>
+    <require from="../valueconverters/object-id"></require>
+    <require from="./prop"></require>
+    <ei-prop
+        repeat.for="prop of props"
+        value.bind="prop.value"
+        objectId.bind="prop.objectId"
+        name.bind="prop.name"
+        collapsible.bind="prop.hasChildren"
+        collapsed.bind="prop.collapsed"
+        accordionmode.bind="accordionmode"
+        class="${prop.kind | entitykind} ${prop.hasChildren ? 'collapsible' : ''} ${prop.collapsed ? 'collapsed' : ''}"></ei-prop>
+</template>

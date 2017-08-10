@@ -1,0 +1,17 @@
+<template>
+    <require from="./prop.css"></require>
+    <require from="./prophead"></require>
+    <require from="./proplist"></require>
+    <ei-prophead
+        name.bind="name"
+        value.bind="value"
+        kind.bind="kind"
+        tabindex="${collapsible ? 0 : -1}"
+        click.delegate="toggleCollapsed()"
+        keydown.delegate="onKeydown($event)"></ei-prophead>
+    <ei-proplist
+        if.bind="collapsible &amp;&amp; !collapsed"
+        owner.bind="value"
+        class="au-animate"
+        accordionmode.bind="accordionmode"></ei-proplist>
+</template>

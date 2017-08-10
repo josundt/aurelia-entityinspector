@@ -1,0 +1,32 @@
+ei-propvalue           { display: inline; }
+
+ei-propvalue.reference {
+    text-decoration: underline;
+    font-style: italic;
+    cursor: pointer;
+}
+ei-propvalue.reference:before {
+    content:"\25BA\0020";
+    color: #FF7373;
+}
+
+jux-entityinspector.dark ei-propvalue.unknown   { color: #569cd6; }
+jux-entityinspector.dark ei-propvalue.null      { color: #569cd6; }
+jux-entityinspector.dark ei-propvalue.date      { color: #dcd079; }
+jux-entityinspector.dark ei-propvalue.boolean   { color: #8c8cb4; }
+jux-entityinspector.dark ei-propvalue.string    { color: #c89178; }
+jux-entityinspector.dark ei-propvalue.number    { color: #b5cea8; }
+jux-entityinspector.dark ei-propvalue.object    { color: #3ac9b0; }
+jux-entityinspector.dark ei-propvalue.array     { color: #3ac9b0; }
+jux-entityinspector.dark ei-propvalue.reference { color: #FF0000; }
+
+jux-entityinspector.light ei-propvalue.unknown   { color: #0000ff; }
+jux-entityinspector.light ei-propvalue.null      { color: #0000ff; }
+jux-entityinspector.light ei-propvalue.date      { color: #795e26; }
+jux-entityinspector.light ei-propvalue.boolean   { color: #267f99; }
+jux-entityinspector.light ei-propvalue.string    { color: #a31515; }
+jux-entityinspector.light ei-propvalue.number    { color: #09885a; }
+jux-entityinspector.light ei-propvalue.object    { color: #267f99; }
+jux-entityinspector.light ei-propvalue.array     { color: #267f99; }
+jux-entityinspector.light ei-propvalue.reference { color: #FF0000; }
+

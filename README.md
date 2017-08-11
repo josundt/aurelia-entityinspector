@@ -34,9 +34,9 @@ export function configure(aurelia) {
 * ***value***  (any type: *Object*, *Array*, *Date*, *string*, *boolean*, *number* etc.)  
 -the entity to inspect
 
-* ***accordionmode*** (boolean)  
+* ***accordionmode*** (Optional; boolean)  
 -when **true**, only one array or object can be expanded at the same level in the inspector.
 
-* ***theme*** ("dark" | "light")  
+* ***theme*** (Optional; "dark" | "light")  
 -the entityinspector theme 
 

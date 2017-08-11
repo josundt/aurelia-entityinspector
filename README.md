@@ -31,12 +31,12 @@ export function configure(aurelia) {
 ```
 
 #### Bindable properties:
-* ***value***  (any type: Object, Array, string, boolean, number, Date etc.)  
+* ***value***  (any type: *Object*, *Array*, *Date*, *string*, *boolean*, *number* etc.)  
 -the entity to inspect
 
-* **accordionmode** (boolean)  
+* ***accordionmode*** (boolean)  
 -when **true**, only one array or object can be expanded at the same level in the inspector.
 
-* **theme** ("dark" | "light")  
+* ***theme*** ("dark" | "light")  
 -the entityinspector theme 
 

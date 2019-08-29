@@ -1,6 +1,6 @@
 {
   "name": "aurelia-entityinspector",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An Aurelia ui component for viewing JavaScript values (plugin)",
   "main": "./dist/es5-umd/index.js",
   "module": "./dist/es5-esm/index.js",

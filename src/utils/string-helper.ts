@@ -48,7 +48,10 @@ export class StringHelper {
             arg = (arg === null || arg === undefined) ? "" : arg;
             // tslint:disable-next-line:max-line-length
             // tslint:disable-next-line:prefer-template
-            result = result.replace(new RegExp("([^\\{]{0,1})(\\{" + i + "\\})([^\\}]{0,1})", "gm"), (substring: string, ...groups: string[]) => groups[0] + String(arg) + groups[2]);
+            result = result.replace(
+                new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "gm"),
+                (substring, ...groups) => groups[0] + String(arg) + groups[2]
+            );
         }
         result = result.replace(/\{\{/g, "{").replace(/\}\}/g, "}");
         return result;

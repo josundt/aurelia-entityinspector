@@ -1,7 +1,7 @@
-import { bindable, customElement, bindingMode } from "aurelia-framework";
+import { bindable, customElement } from "aurelia-framework";
 
 @customElement("ei-propname")
 export class PropNameElement {
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    value: string;
+    @bindable
+    value?: string;
 }

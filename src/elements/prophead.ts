@@ -1,4 +1,4 @@
-import { bindable, customElement, bindingMode, inject } from "aurelia-framework";
+import { bindable, customElement, inject } from "aurelia-framework";
 import { EntityKind, EntityType } from "../contracts/contracts";
 import { ITypeHelper, TypeHelper } from "../utils/type-helper";
 
@@ -11,14 +11,14 @@ export class PropHeadElement {
         private typeHelper: ITypeHelper
     ) {}
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    name: string;
+    @bindable
+    name?: string;
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    value: EntityType;
+    @bindable
+    value?: EntityType;
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    kind: EntityKind;
+    @bindable
+    kind?: EntityKind;
 
     get parentPropElement(): PropHeadElement {
         return (this.element.parentElement as any)["au"]["controller"]["viewModel"];

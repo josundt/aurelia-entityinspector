@@ -1,6 +1,10 @@
 {
   "extends": "tslint:latest",
   "defaultSeverity": "error",
+  "rulesDirectory": [
+    "./node_modules/tslint-eslint-rules/dist/rules",
+    "./node_modules/tslint-microsoft-contrib"
+  ],
   "rules": {
 
     // Standard TSLint rules:
@@ -8,7 +12,6 @@
     "align": {
       "severity": "warning",
       "options": [
-        true,
         "parameters",
         /*"arguments",*/
         "statements",
@@ -20,10 +23,7 @@
     "arrow-parens": [true, "ban-single-arg-parens"],
     "arrow-return-shorthand": [true /*, "multiline"*/],
     "await-promise": true,
-    "ban": [true,
-      ["JSON", "parse", "Use our own custom json serializer from core/utils instead"],
-      ["JSON", "stringify", "Use our own custom json serializer from core/utils instead"]
-    ],
+    "ban": [true, "I18N"],
     "ban-types": {
         "options": [
             ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
@@ -58,7 +58,8 @@
     "eofline": false,
     "file-header": [false, "Copyright \\d{4}"],
     "forin": true,
-    "import-blacklist": [true, "jquery"],
+    "function-constructor": true,
+    "import-blacklist": [false, "jquery"],
     "import-spacing": true,
     "indent": {
       "options": ["spaces", 4]
@@ -82,7 +83,7 @@
     },
     "max-line-length": {
       "severity": "warning",
-      "options": [180]
+      "options": {"limit": 180, "ignore-pattern": "^import |^\\s*\\/\\/ |^\\s*\\/\\*\\*"}
     },
     "member-access": [true, /*"check-accessor", "check-constructor",*/ "no-public"],
     "member-ordering": {
@@ -128,7 +129,8 @@
     "no-eval": true,
     "no-floating-promises": false,
     "no-for-in-array": true,
-    "no-import-side-effect": false,
+    "no-implicit-dependencies": false,
+    "no-import-side-effect": true,
     "no-inferrable-types": [false, "ignore-params", "ignore-properties"],
     "no-inferred-empty-object-type": true,
     "no-internal-module": true,
@@ -162,7 +164,6 @@
     "no-unsafe-any": false,
     "no-unsafe-finally": true,
     "no-unused-expression": [true /*,"allow-fast-null-checks", "allow-new", "allow-tagged-template"*/],
-    "no-unused-variable": true,
     "no-use-before-declare": false,
     "no-var-keyword": true,
     "no-var-requires": true,
@@ -262,8 +263,7 @@
         }
       ]
     },
-    "typeof-compare": true,
-    "unified-signatures": true,
+    "unified-signatures": false,
     "use-isnan": true,
     //"use-strict": [ true, "check-module", "check-function" ],
     "variable-name": [
@@ -284,7 +284,96 @@
         /* "check-typecast", */
         "check-preblock"
       ]
-    }
+    },
+
+    /* TSLINT-ESLINT-RULES rules */
+    "no-constant-condition": true,
+    "no-control-regex": true,
+    "no-duplicate-case": true,
+    "no-empty-character-class": true,
+    "no-ex-assign": true,
+    "no-extra-boolean-cast": true,
+    "no-extra-semi": false, // Already handled by microsoft-contrib rule
+    "no-inner-declarations": true,
+    "no-invalid-regexp": true,
+    //"no-null-keyword": true,
+    "no-regex-spaces": true,
+    "no-submodule-imports": false,
+    //"no-unexpected-multiline": true,
+    "valid-jsdoc": true,
+    "valid-typeof": true,
+    "handle-callback-err": true,
+
+    /* TSLINT-MICROSOFT-CONTRIB rules */
+    "chai-prefer-contains-to-index-of": false, // N/A
+    "chai-vague-errors": false, // N/A
+    "export-name": false, // Disabled; too strict
+    "function-name": [
+      true,
+      {
+        "method-regex": "^[a-z][\\w\\d]+$",
+        "private-method-regex": "^[_a-z][\\w\\d]+$", // changed from default: "^[a-z][\\w\\d]+$"
+        "protected-method-regex": "^[a-z][\\w\\d]+$",
+        "static-method-regex": "^[a-z][\\w\\d]+$", // changed from default: "^[A-Z_\\d]+$"
+        "function-regex": "^[a-z][\\w\\d]+$"
+      }
+    ],
+    "import-name": false,
+    "insecure-random": true,
+    "jquery-deferred-must-complete": false, /* NA */
+    "max-func-body-length": [true, 1000, {"ignore-parameters-to-function-regex": "describe"}],
+    "missing-jsdoc": false, // Disabled, already governed by TSLint STD rule "completed-docs"
+    "mocha-avoid-only": true, // also works for jasmine
+    "mocha-no-side-effect-code": true, // also works for jasmine
+    "mocha-unneeded-done": true, // also works for jasmine
+    "no-backbone-get-set-outside-model": false, /* N/A */
+    "no-banned-terms": true,
+    "no-cookies": true,
+    "no-delete-expression": true,
+    "no-disable-auto-sanitization": true,
+    "no-document-domain": true,
+    "no-document-write": true,
+    "no-empty-interfaces": false, // Disabled, already governed by TSLint STD rule "no-empty-interface"
+    "no-empty-line-after-opening-brace": false,
+    "no-exec-script": true,
+    "no-for-in": false, // Disabled, already governed by TSLint STD rule
+    "no-function-expression": false, // Disabled, already governed by TSLint STD rule "only-arrow-functions"
+    "no-http-string": [true, "http://www.example.com/?.*", "http://www.examples.com/?.*"],
+    "no-increment-decrement": false,
+    "no-inner-html": true,
+    "no-jquery-raw-elements": true,
+    "no-multiline-string": true,
+    "no-octal-literal": true,
+    "no-relative-imports": false, // Disabled; we use relative imports
+    "no-reserved-keywords": false,
+    "no-single-line-block-comment": false,
+    "no-string-based-set-immediate": true,
+    "no-string-based-set-interval": true,
+    "no-string-based-set-timeout": true,
+    "no-suspicious-comment": {
+      "severity": "off"
+    }, // Temporarily switched off
+    "no-this-assignment": true,
+    "no-typeof-undefined": true,
+    "no-unnecessary-class": true,
+    "no-unnecessary-field-initialization": false, // Disabled, already governed by TSLint STD rule "no-unnecessary-initializer"
+    "no-unnecessary-local-variable": false, // Disabled: We prefer to sometimes assign the result of a function to a variable before returning it for debugging
+    "no-unnecessary-override": false, /* DISABLED: Sometimes the overridden method has more specific param types or return types than the base method */
+    "no-unnecessary-semicolons": true,
+    "no-unsupported-browser-code": true,
+    "no-with-statement": true,
+    "non-literal-require": false,
+    "possible-timing-attack": true,
+    "prefer-array-literal": false, // Disabled: Rules for array type notations are governed by the TSLint STD rule "array-type"
+    "promise-must-complete": true,
+    "react-anchor-blank-noopener": false, /* N/A */
+    "react-iframe-missing-sandbox": false, /* N/A */
+    "react-no-dangerous-html": false, /* N/A */
+    "react-this-binding-issue": false, /* N/A */
+    "react-unused-props-and-state": false,  /* N/A */
+    "underscore-consistent-invocation": false, /* N/A */
+    "unnecessary-bind": true,
+    "use-named-parameter": true
   }
 }
 

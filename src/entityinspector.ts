@@ -1,7 +1,7 @@
-import { bindable, customElement, computedFrom, inject } from "aurelia-framework";
-import { EntityType, EntityKind } from "./contracts/contracts";
-import { ITypeHelper, TypeHelper } from "./utils/type-helper";
+import { bindable, computedFrom, customElement, inject } from "aurelia-framework";
+import { EntityKind, EntityType } from "./contracts/contracts";
 import { PropElement } from "./elements/prop";
+import { ITypeHelper, TypeHelper } from "./utils/type-helper";
 
 @inject(Element, TypeHelper)
 @customElement("jux-entityinspector")
@@ -13,7 +13,7 @@ export class EntityinspectorElement {
     ) {}
 
     @bindable
-    value: EntityType;
+    value: EntityType | null = null;
 
     @bindable
     accordionmode: boolean = false;
@@ -30,7 +30,7 @@ export class EntityinspectorElement {
         return String(this.accordionmode) === "true";
     }
 
-    collapsed: false;
+    collapsed: boolean = false;
 
     @computedFrom("value")
     get objectId(): string | undefined {

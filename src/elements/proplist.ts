@@ -1,6 +1,6 @@
-import { bindable, customElement, computedFrom, inject, bindingMode } from "aurelia-framework";
-import { TypeHelper, ITypeHelper } from "../utils/type-helper";
-import { PropertyModel, ComplexType } from "../contracts/contracts";
+import { bindable, computedFrom, customElement, inject } from "aurelia-framework";
+import { ComplexType, PropertyModel } from "../contracts/contracts";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper";
 import { PropElement } from "./prop";
 
 @inject(Element, TypeHelper)
@@ -12,11 +12,11 @@ export class PropListElement {
         private typeHelper: ITypeHelper
     ) { }
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    owner: ComplexType;
+    @bindable
+    owner?: ComplexType;
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    accordionmode: boolean;
+    @bindable
+    accordionmode?: boolean;
 
     get childPropElements(): PropElement[] {
         return this.toArray(this.element.children).map(c => (c as any)["au"]["controller"]["viewModel"]);
@@ -28,9 +28,9 @@ export class PropListElement {
 
     @computedFrom("owner")
     get props(): PropertyModel[] {
-        const propNames = this.typeHelper.isPlainObject(this.owner) || (this.owner as any) instanceof Array ? Object.keys(this.owner) : [];
-        return propNames.map<PropertyModel>(n => {
-            const value = this.owner[n];
+        const propNames = this.owner && (this.typeHelper.isPlainObject(this.owner) || (this.owner as any) instanceof Array) ? Object.keys(this.owner) : [];
+        return propNames.map(n => {
+            const value = this.owner ? this.owner[n] : undefined;
             let hasChildren = false;
             if (this.typeHelper.isComplexType(value)) {
                 hasChildren = Object.keys(value).length > 0 && !this.typeHelper.isReferenceObject(value);
@@ -41,7 +41,7 @@ export class PropListElement {
                 kind: this.typeHelper.getKind(value),
                 hasChildren: hasChildren,
                 collapsed: true
-            };
+            } as PropertyModel;
         });
     }
 

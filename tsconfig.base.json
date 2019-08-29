@@ -1,12 +1,5 @@
 {
   "compilerOptions": {
-    "plugins": [{
-      "name": "tslint-language-service",
-      "alwaysShowRuleFailuresAsWarnings": false,
-      "ignoreDefinitionFiles": true,
-      "configFile": "../tslint.json",
-      "disableNoUnusedVariableRule": false
-    }],
     "sourceMap": true,                        /* Generates corresponding '.map' file. */
     "strict": true,                           /* Enable all strict type-checking options. */
     "noUnusedLocals": true,                   /* Report errors on unused locals. */
@@ -19,6 +12,16 @@
     ],
     "types": [
       "aurelia-framework"
+    ],
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "ignoreDefinitionFiles": true,
+        "configFile": "./tslint.json",
+        "suppressWhileTypeErrorsPresent": false,
+        "mockTypeScriptVersion": false
+      }
     ]
   },
   "include": [

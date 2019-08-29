@@ -1,17 +1,17 @@
-import { bindable, customElement, bindingMode, inject, computedFrom } from "aurelia-framework";
-import { EntityType, EntityKind } from "../contracts/contracts";
-import { TypeHelper, ITypeHelper } from "../utils/type-helper";
-import { PropNavigator, IPropNavigator } from "../utils/prop-navigator";
+import { bindable, bindingMode, computedFrom, customElement, inject } from "aurelia-framework";
+import { EntityKind, EntityType } from "../contracts/contracts";
+import { IPropNavigator, PropNavigator } from "../utils/prop-navigator";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper";
 import { PropHeadElement } from "./prophead";
 import { PropListElement } from "./proplist";
 
 enum Key {
-    tab = 9,
-    enter = 13,
-    arrowLeft = 37,
-    arrowUp = 38,
-    arrowRight = 39,
-    arrowDown = 40,
+    tab = "Tab",
+    enter = "Enter",
+    arrowLeft = "ArrowLeft",
+    arrowUp = "ArrowUp",
+    arrowRight = "ArrowRight",
+    arrowDown = "ArrowDown"
 }
 
 @inject(Element, TypeHelper, PropNavigator)
@@ -24,19 +24,19 @@ export class PropElement {
         private propNav: IPropNavigator
     ) {}
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    name: string;
+    @bindable
+    name?: string;
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
-    value: EntityType;
+    @bindable
+    value?: EntityType;
 
-    @bindable({ defaultBindingMode: bindingMode.oneTime })
+    @bindable
     collapsible: boolean = false;
 
     @bindable({ defaultBindingMode: bindingMode.twoWay })
     collapsed: boolean = false;
 
-    @bindable({ defaultBindingMode: bindingMode.oneWay })
+    @bindable
     accordionmode: boolean = false;
 
     @computedFrom("value")
@@ -67,7 +67,7 @@ export class PropElement {
 
     onKeydown(event: KeyboardEvent): boolean {
         let preventDefault = false;
-        switch (event.which) {
+        switch (event.key) {
 
             // case Key.tab: {
             //     if (event.shiftKey) {

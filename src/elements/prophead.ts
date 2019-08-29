@@ -45,9 +45,9 @@ export class PropHeadElement {
     }
 
     scrollIntoView(): void {
-        setImmediate(() => {
+        setTimeout(() => {
             this.element.scrollIntoView();
-        });
+        }, 0);
     }
 
     onValueClicked(): void {

@@ -1,1 +1,0 @@
-{"version":3,"file":"propname.js","sourceRoot":"","sources":["../../../src/elements/propname.ts"],"names":[],"mappings":";;;;;;AAAA,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAE,WAAW,EAAE,MAAM,mBAAmB,CAAC;AAGzE,IAAa,eAAe,GAA5B;CAGC,CAAA;AADG;IADC,QAAQ,CAAC,EAAE,kBAAkB,EAAE,WAAW,CAAC,OAAO,EAAE,CAAC;8CACxC;AAFL,eAAe;IAD3B,aAAa,CAAC,aAAa,CAAC;GAChB,eAAe,CAG3B;SAHY,eAAe"}

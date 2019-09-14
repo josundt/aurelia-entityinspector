@@ -19,9 +19,9 @@ enum Key {
 export class PropElement {
 
     constructor(
-        private element: HTMLElement,
-        private typeHelper: ITypeHelper,
-        private propNav: IPropNavigator
+        private readonly element: HTMLElement,
+        private readonly typeHelper: ITypeHelper,
+        private readonly propNav: IPropNavigator
     ) {}
 
     @bindable

@@ -1,13 +1,11 @@
 {
-  "extends": "tslint:latest",
-  "defaultSeverity": "error",
-  "rulesDirectory": [
-    "./node_modules/tslint-eslint-rules/dist/rules",
-    "./node_modules/tslint-microsoft-contrib"
+  "extends": [
+    "tslint:latest",
+    "./tslint-eslint-rules.json",
+    "./tslint-microsoft-contrib.json"
   ],
+  "defaultSeverity": "error",
   "rules": {
-
-    // Standard TSLint rules:
     "adjacent-overload-signatures": true,
     "align": {
       "severity": "warning",
@@ -24,6 +22,8 @@
     "arrow-return-shorthand": [true /*, "multiline"*/],
     "await-promise": true,
     "ban": [true, "I18N"],
+    "ban-comma-operator": true,
+    "ban-ts-ignore": true,
     "ban-types": {
         "options": [
             ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
@@ -34,6 +34,7 @@
             ["Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?"]
         ]
     },
+    "binary-expression-operand-order": true,
     "callable-types": true,
     "class-name": true,
     "comment-format": {
@@ -57,6 +58,7 @@
     "encoding": false,
     "eofline": false,
     "file-header": [false, "Copyright \\d{4}"],
+    "file-name-casing": [true, "kebab-case"],
     "forin": true,
     "function-constructor": true,
     "import-blacklist": [false, "jquery"],
@@ -109,6 +111,7 @@
     },
     "new-parens": true,
     "newline-before-return": false,
+    "newline-per-chained-call": false,
     "no-angle-bracket-type-assertion": false,
     "no-any": false,
     "no-arg": true,
@@ -122,8 +125,11 @@
     "no-construct": true,
     "no-debugger": true,
     "no-default-export": false,
+    "no-duplicate-imports": [true, { "allow-namespace-imports": true }],
     "no-duplicate-super": true,
+    "no-duplicate-switch-case": true,
     "no-duplicate-variable": true,
+    "no-dynamic-delete": false,
     "no-empty": true,
     "no-empty-interface": false,
     "no-eval": true,
@@ -142,11 +148,15 @@
     "no-misused-new": true,
     "no-namespace": false,
     "no-non-null-assertion": false,
+    "no-null-keyword": false,
     "no-object-literal-type-assertion": false,
     "no-parameter-properties": false,
+    "no-parameter-reassignment": false,
+    "no-redundant-jsdoc": false,
     "no-reference": true,
     "no-reference-import": true,
     "no-require-imports": true,
+    "no-return-await": true,
     "no-shadowed-variable": true,
     "no-sparse-arrays": true,
     "no-string-literal": false,
@@ -170,8 +180,8 @@
     "no-void-expression": [true, "ignore-arrow-function-shorthand"],
     "number-literal-format": true,
     "object-literal-sort-keys": [false, "ignore-case"],
-    "object-literal-key-quotes": [true, "as-needed"],
-    "object-literal-shorthand": false,
+    "object-literal-key-quotes": [true, "consistent-as-needed"],
+    "object-literal-shorthand": [true, "never"],
     "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
     "one-line": {
       "severity": "warning",
@@ -188,15 +198,24 @@
     },
     "ordered-imports": false,
     "prefer-conditional-expression": false,
+    "prefer-const": true,
     "prefer-for-of": true,
     "prefer-function-over-method": false,
     "prefer-method-signature": true,
     "prefer-object-spread": true,
+    "prefer-readonly": true,
     "prefer-switch": {
       "options": { "min-cases": 3 }
     },
     "prefer-template": true,
-    "promise-function-async": false,
+    "prefer-while": false,
+    "promise-function-async": {
+      "severity": "none",
+      "options": [
+        "check-function-delcaration",
+        "check-method-declaration"
+      ]
+    },
     "quotemark": [ true, "double" /*, "avoid-escape"*/],
     "radix": true,
     "restrict-plus-operands": false, /* FAULTY */
@@ -212,6 +231,7 @@
         "named": "never"
       }
     },
+    "space-within-parens": true,
     "strict-boolean-expressions": {
       "severity": "off",
       "options": [
@@ -223,6 +243,7 @@
     },
     "strict-type-predicates": false,
     "switch-default": false,
+    "switch-final-break": [true, "always"],
     "trailing-comma": {
       "severity": "off",
       "options": {
@@ -231,6 +252,7 @@
       }
     },
     "triple-equals": true,
+    "type-literal-delimiter": [true, { "singleLine": "always" }],
     "typedef": {
       "options": [
         "call-signature",
@@ -264,6 +286,7 @@
       ]
     },
     "unified-signatures": false,
+    "use-default-type-parameter": false,
     "use-isnan": true,
     //"use-strict": [ true, "check-module", "check-function" ],
     "variable-name": [
@@ -285,24 +308,6 @@
         "check-preblock"
       ]
     },
-
-    /* TSLINT-ESLINT-RULES rules */
-    "no-constant-condition": true,
-    "no-control-regex": true,
-    "no-duplicate-case": true,
-    "no-empty-character-class": true,
-    "no-ex-assign": true,
-    "no-extra-boolean-cast": true,
-    "no-extra-semi": false, // Already handled by microsoft-contrib rule
-    "no-inner-declarations": true,
-    "no-invalid-regexp": true,
-    //"no-null-keyword": true,
-    "no-regex-spaces": true,
-    "no-submodule-imports": false,
-    //"no-unexpected-multiline": true,
-    "valid-jsdoc": true,
-    "valid-typeof": true,
-    "handle-callback-err": true,
 
     /* TSLINT-MICROSOFT-CONTRIB rules */
     "chai-prefer-contains-to-index-of": false, // N/A

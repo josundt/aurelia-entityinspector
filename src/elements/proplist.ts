@@ -8,8 +8,8 @@ import { PropElement } from "./prop";
 export class PropListElement {
 
     constructor(
-        private element: HTMLElement,
-        private typeHelper: ITypeHelper
+        private readonly element: HTMLElement,
+        private readonly typeHelper: ITypeHelper
     ) { }
 
     @bindable

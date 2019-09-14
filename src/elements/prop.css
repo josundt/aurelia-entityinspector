@@ -1,20 +1,27 @@
 ei-prop {
     display: list-item;
+    list-style-position: inside;
     font: inherit;
-    margin-left: -2.5em;
-    padding-left: 2.5em;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 ei-prop:before {
-    content:"\25BA\0020";
+    content:"\25BA";
     color: transparent;
+    font-size: 21px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 7px;
 }
 
 ei-prop.collapsible:before {
-    content:"\25BC\0020";
+    content:"\25BE";
     color: #FF7373;
 }
 ei-prop.collapsible.collapsed:before {
-    content:"\25BA\0020";
+    content:"\25B8";
     color: #FF7373;
 }

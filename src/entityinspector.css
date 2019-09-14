@@ -1,19 +1,20 @@
-jux-entityinspector {
+ei-container {
     color: #678cb1;
     font-family: Consolas, Monaco, Lucida Console, Courier New, monospace;
-    line-height: 1.3em;
+    font-size: 14px;
+    line-height: 20px;
     display: block;
     overflow-x: auto;
     padding: 10px;
     white-space: nowrap;
 }
 
-jux-entityinspector.dark {
+ei-container.dark {
     color: #e1e1e1;
     background: #1e1e1e;
 }
 
-jux-entityinspector.light {
+ei-container.light {
     color: #1e1e1e;
     background: #fff;
 }

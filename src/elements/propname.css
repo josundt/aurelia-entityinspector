@@ -2,20 +2,20 @@ ei-propname {
     display: inline;
 }
 
-jux-entityinspector.dark ei-propname {
+ei-container.dark ei-propname {
     color: #9cdcfe;
 }
 
-jux-entityinspector.light ei-propname {
+ei-container.light ei-propname {
     color: #001080;
 }
 
-jux-entityinspector.dark ei-propname.id-prop {
+ei-container.dark ei-propname.id-prop {
     color: #9ab7c6;
     font-style: italic;
 }
 
-jux-entityinspector.light ei-propname.id-prop {
+ei-container.light ei-propname.id-prop {
     color: #F00;
     font-style: italic;
 }

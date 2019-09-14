@@ -9,13 +9,13 @@ ei-prop.collapsible > ei-prophead {
     cursor: pointer;
 }
 
-jux-entityinspector.dark ei-prop.collapsible > ei-prophead:hover,
-jux-entityinspector.dark ei-prop.collapsible > ei-prophead:focus {
+ei-container.dark ei-prop.collapsible > ei-prophead:hover,
+ei-container.dark ei-prop.collapsible > ei-prophead:focus {
     background-color: #1e1e1e;
 }
 
-jux-entityinspector.light ei-prop.collapsible > ei-prophead:hover,
-jux-entityinspector.light ei-prop.collapsible > ei-prophead:focus {
+ei-container.light ei-prop.collapsible > ei-prophead:hover,
+ei-container.light ei-prop.collapsible > ei-prophead:focus {
     background-color: #CCC;
 }
 

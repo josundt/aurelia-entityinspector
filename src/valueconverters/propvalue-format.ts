@@ -1,13 +1,13 @@
-import { valueConverter, inject } from "aurelia-framework";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper";
+import { inject, valueConverter } from "aurelia-framework";
 import { IStringHelper, StringHelper } from "../utils/string-helper";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper";
 
 @valueConverter("propvalueFormat")
 @inject(TypeHelper, StringHelper)
 export class PropvalueFormatValueConverter {
     constructor(
-        private typeHelper: ITypeHelper,
-        private stringHelper: IStringHelper
+        private readonly typeHelper: ITypeHelper,
+        private readonly stringHelper: IStringHelper
     ) {}
 
     toView(value: boolean|number|string|Date|any[]|object|null): string {

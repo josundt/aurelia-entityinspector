@@ -1,15 +1,26 @@
 <template>
-    <require from="./entityinspector.css"></require>
+    <require from="./entityinspector.css" as="scoped"></require>
+    <require from="./elements/prop.css" as="scoped"></require>
+    <require from="./elements/prophead.css" as="scoped"></require>
+    <require from="./elements/proplist.css" as="scoped"></require>
+    <require from="./elements/propname.css" as="scoped"></require>
+    <require from="./elements/propvalue.css" as="scoped"></require>
     <require from="./valueconverters/entitykind"></require>
     <require from="./valueconverters/object-id"></require>
     <require from="./elements/prop"></require>
-    <ei-prop
-        value.bind="value"
-        objectId.bind="objectId"
-        name=""
-        collapsible.bind="hasChildren"
-        collapsed.bind="collapsed"
-        accordionmode.bind="accordionmode"
-        id="${objectId | objectId}"
-        class="${kind | entitykind} ${hasChildren ? 'collapsible' : ''} ${collapsed ? 'collapsed' : ''}"></ei-prop>
+
+    <ei-container class="${theme}">
+
+        <ei-prop
+            value.bind="value"
+            objectId.bind="objectId"
+            name=""
+            collapsible.bind="hasChildren"
+            collapsed.bind="collapsed"
+            accordionmode.bind="accordionmode"
+            id="${objectId | objectId}"
+            class="${kind | entitykind} ${hasChildren ? 'collapsible' : ''} ${collapsed ? 'collapsed' : ''}"></ei-prop>
+
+    </ei-container>
+
 </template>

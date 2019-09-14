@@ -1,15 +1,16 @@
-import { bindable, computedFrom, customElement, inject } from "aurelia-framework";
+import { bindable, computedFrom, customElement, inject, useShadowDOM } from "aurelia-framework";
 import { EntityKind, EntityType } from "./contracts/contracts";
 import { PropElement } from "./elements/prop";
 import { ITypeHelper, TypeHelper } from "./utils/type-helper";
 
 @inject(Element, TypeHelper)
 @customElement("jux-entityinspector")
+@useShadowDOM()
 export class EntityinspectorElement {
 
     constructor(
-        private element: HTMLElement,
-        private typeHelper: ITypeHelper
+        private readonly element: HTMLElement,
+        private readonly typeHelper: ITypeHelper
     ) {}
 
     @bindable

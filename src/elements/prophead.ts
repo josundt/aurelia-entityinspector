@@ -7,8 +7,8 @@ import { ITypeHelper, TypeHelper } from "../utils/type-helper";
 export class PropHeadElement {
 
     constructor(
-        private element: HTMLElement,
-        private typeHelper: ITypeHelper
+        private readonly element: HTMLElement,
+        private readonly typeHelper: ITypeHelper
     ) {}
 
     @bindable

@@ -1,0 +1,2 @@
+# Ignore js files; only analyze typescript files:
+**/*.js

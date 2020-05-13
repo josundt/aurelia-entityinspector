@@ -50,10 +50,24 @@ export class PropHeadElement {
         }, 0);
     }
 
+    private _rootElem: HTMLElement | undefined;
+    get rootElem(): HTMLElement {
+        // It should be possible to say this.element.shadowRoot?
+        if (!this._rootElem) {
+            let root: HTMLElement  = this.element;
+            let curr: HTMLElement | null = this.element;
+            while ((curr = root.parentElement) !== null) {
+                root = curr;
+            }
+            this._rootElem = root;
+        }
+        return this._rootElem;
+    }
+
     onValueClicked(): void {
         const objectReferenceId = this.objectReferenceId;
         if (objectReferenceId) {
-            const referencedElem = document.querySelector(`ei-prophead[data-objectid='${objectReferenceId}']`) as HTMLElement;
+            const referencedElem = this.rootElem.querySelector(`ei-prophead[data-objectid='${objectReferenceId}']`) as HTMLElement;
             referencedElem.focus();
             referencedElem.scrollIntoView();
         }

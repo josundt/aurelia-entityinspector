@@ -31,9 +31,12 @@ export class PropvalueFormatValueConverter {
             result = `Array [${value.length}]`;
         } else if (this.typeHelper.isPlainObject(value)) {
             const propCount = Object.keys(value).length;
-            if (propCount === 1 && (<any>value)["$ref"]) {
-                result = `{ $ref: ${(<any>value)["$ref"]} }`;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            if (propCount === 1 && (value as any)["$ref"]) {
+                // eslint-disable-next-line
+                result = `{ $ref: ${(value as any)["$ref"]} }`;
             } else {
+                // eslint-disable-next-line
                 const id: string = (value as any)["$id"];
                 const idString: string = id ? `#${id} ` : "";
                 result = `Object ${idString}{${propCount}}`;

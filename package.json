@@ -1,6 +1,6 @@
 {
   "name": "aurelia-entityinspector",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "An Aurelia ui component for viewing JavaScript values (plugin)",
   "main": "./dist/es5-umd/index.js",
   "module": "./dist/es5-esm/index.js",
@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "npm run lint:ts && npm run lint:html",
     "lint:ts": "eslint ./src --format visualstudio --ext .ts,.tsx",
-    "lint:html": "htmlhint -c .htmlhintrc src",
+    "lint:html": "htmlhint src -c ./node_modules/@josundt/htmlhint-config/.htmlhintrc --format unix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.es5-amd.json && tsc -p tsconfig.es5-cjs.json && tsc -p tsconfig.es5-umd.json && tsc -p tsconfig.es5-esm.json && tsc -p tsconfig.es2015-esm.json && node ./build/build.js",
     "clean": "rimraf ./dist/**/*"
@@ -30,12 +30,12 @@
   },
   "homepage": "https://github.com/josundt/aurelia-entityinspector#readme",
   "devDependencies": {
-    "@josundt/eslint-config": "1.0.1",
-    "aurelia-framework": "1.3.1",
-    "glob": "7.1.6",
-    "htmlhint": "0.12.0",
+    "@josundt/eslint-config": "4.2.2",
+    "@josundt/htmlhint-config": "1.0.0",
+    "aurelia-framework": "^1.3.1",
+    "glob": "7.1.7",
     "rimraf": "3.0.2",
-    "typescript": "3.9.2"
+    "typescript": "4.2.4"
   },
   "peerDependencies": {
     "aurelia-framework": "^1.3.1"

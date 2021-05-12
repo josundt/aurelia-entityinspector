@@ -21,12 +21,15 @@ export class PropHeadElement {
     kind?: EntityKind;
 
     get parentPropElement(): PropHeadElement {
-        return (this.element.parentElement as any)["au"]["controller"]["viewModel"];
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        return (this.element.parentElement as any)["au"]["controller"]["viewModel"] as PropHeadElement;
     }
 
     get objectId(): string | undefined {
         let result: string | undefined = "";
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (this.typeHelper.isComplexType(this.value) && (this.value as any)["$id"]) {
+            // eslint-disable-next-line
             result =  (this.value as any)["$id"];
         }
         return result;
@@ -67,7 +70,7 @@ export class PropHeadElement {
     onValueClicked(): void {
         const objectReferenceId = this.objectReferenceId;
         if (objectReferenceId) {
-            const referencedElem = this.rootElem.querySelector(`ei-prophead[data-objectid='${objectReferenceId}']`) as HTMLElement;
+            const referencedElem: HTMLElement = this.rootElem.querySelector(`ei-prophead[data-objectid='${objectReferenceId}']`)!;
             referencedElem.focus();
             referencedElem.scrollIntoView();
         }

@@ -19,10 +19,12 @@ export class PropListElement {
     accordionmode?: boolean;
 
     get childPropElements(): PropElement[] {
+        // eslint-disable-next-line
         return this.toArray(this.element.children).map(c => (c as any)["au"]["controller"]["viewModel"]);
     }
 
     get parentPropElement(): PropElement {
+        // eslint-disable-next-line
         return (this.element.parentElement as any)["au"]["controller"]["viewModel"];
     }
 

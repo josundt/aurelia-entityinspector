@@ -44,13 +44,15 @@ export class StringHelper {
         let result: string = formatString;
         let arg: any;
         for (let i: number = 0; i < formatArgs.length; i++) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             arg = formatArgs[i];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             arg = (arg === null || arg === undefined) ? "" : arg;
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:prefer-template
+
+
             result = result.replace(
                 new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "gm"),
-                (substring, ...groups) => groups[0] + String(arg) + groups[2]
+                (substring, ...groups: string[]) => groups[0] + String(arg) + groups[2]
             );
         }
         result = result.replace(/\{\{/g, "{").replace(/\}\}/g, "}");

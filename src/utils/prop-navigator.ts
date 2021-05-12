@@ -20,7 +20,7 @@ export class PropNavigator implements IPropNavigator {
     goToChild(fromProp: PropElement): void {
         const childPropList = fromProp.childPropListElement;
         const childPropListElems = childPropList ? childPropList.childPropElements.filter(cpe => cpe.collapsible) : null;
-        if (childPropListElems && childPropListElems.length) {
+        if (childPropListElems?.length) {
             childPropListElems[0].childPropHeadElement.focus();
         }
     }

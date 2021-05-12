@@ -37,6 +37,7 @@ export class EntityinspectorElement {
     get objectId(): string | undefined {
         let objectId: string | undefined;
         if (this.typeHelper.isComplexType(this.value)) {
+            // eslint-disable-next-line
             objectId = (this.value as any)["$id"];
         }
         return objectId;
@@ -62,6 +63,7 @@ export class EntityinspectorElement {
     }
 
     get childPropElement(): PropElement {
+        // eslint-disable-next-line
         return (this.element.querySelector(":scope > ei-prop") as any)["au"]["controller"]["viewModel"];
     }
 

@@ -48,16 +48,19 @@ export class PropElement {
         let result: PropListElement | null = null;
         const parent = this.element.parentElement;
         if (parent && parent.tagName.toLowerCase() === "ei-proplist") {
-            result = (parent as any)["au"]["controller"]["viewModel"];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            result = (parent as any)["au"]["controller"]["viewModel"] as PropListElement | null;
         }
         return result;
     }
 
     get childPropHeadElement(): PropHeadElement {
-        return (this.element.firstElementChild as any)["au"]["controller"]["viewModel"];
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        return (this.element.firstElementChild as any)["au"]["controller"]["viewModel"] as PropHeadElement;
     }
 
     get childPropListElement(): PropListElement | null {
+        // eslint-disable-next-line
         return (this.element.childElementCount > 1) ? (this.element.children[1] as any)["au"]["controller"]["viewModel"] : null;
     }
 

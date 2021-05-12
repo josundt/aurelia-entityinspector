@@ -1,6 +1,6 @@
 export type EntityType = object | any[] | Date | string | number | boolean | null;
 
-export type ComplexType = (object | any[]) & { [key: string]: EntityType; };
+export type ComplexType = (object | any[]) & Record<string, EntityType>;
 
 export interface ReferenceObject {
     "$ref": string;
@@ -9,15 +9,15 @@ export interface ReferenceObject {
 
 /* eslint-disable id-blacklist */
 export enum EntityKind {
-    object,
-    array,
-    date,
-    string,
-    number,
-    boolean,
-    null,
-    reference,
-    unknown
+    object = 0,
+    array = 1,
+    date = 2,
+    string = 3,
+    number = 4,
+    boolean = 5,
+    null = 6,
+    reference = 7,
+    unknown = 8
 }
 /* eslint-enable id-blacklist */
 

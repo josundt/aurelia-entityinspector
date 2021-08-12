@@ -1,6 +1,6 @@
 import { bindable, customElement, inject } from "aurelia-framework";
-import { EntityKind, EntityType } from "../contracts/contracts";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper";
+import { EntityKind, EntityType } from "../contracts/contracts.js";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
 
 @inject(Element, TypeHelper)
 @customElement("ei-prophead")

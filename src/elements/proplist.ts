@@ -1,7 +1,7 @@
 import { bindable, computedFrom, customElement, inject } from "aurelia-framework";
-import { ComplexType, PropertyModel } from "../contracts/contracts";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper";
-import { PropElement } from "./prop";
+import { ComplexType, PropertyModel } from "../contracts/contracts.js";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
+import { PropElement } from "./prop.js";
 
 @inject(Element, TypeHelper)
 @customElement("ei-proplist")

@@ -1,6 +1,6 @@
 import { inject, valueConverter } from "aurelia-framework";
-import { IStringHelper, StringHelper } from "../utils/string-helper";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper";
+import { IStringHelper, StringHelper } from "../utils/string-helper.js";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
 
 @valueConverter("propvalueFormat")
 @inject(TypeHelper, StringHelper)

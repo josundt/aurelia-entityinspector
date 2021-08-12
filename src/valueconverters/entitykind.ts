@@ -1,5 +1,5 @@
 import { valueConverter } from "aurelia-framework";
-import { EntityKind } from "../contracts/contracts";
+import { EntityKind } from "../contracts/contracts.js";
 
 @valueConverter("entitykind")
 export class EntityKindValueConverter {

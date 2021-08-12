@@ -1,9 +1,9 @@
 import { bindable, bindingMode, computedFrom, customElement, inject } from "aurelia-framework";
-import { EntityKind, EntityType } from "../contracts/contracts";
-import { IPropNavigator, PropNavigator } from "../utils/prop-navigator";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper";
-import { PropHeadElement } from "./prophead";
-import { PropListElement } from "./proplist";
+import { EntityKind, EntityType } from "../contracts/contracts.js";
+import { IPropNavigator, PropNavigator } from "../utils/prop-navigator.js";
+import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
+import { PropHeadElement } from "./prophead.js";
+import { PropListElement } from "./proplist.js";
 
 enum Key {
     tab = "Tab",

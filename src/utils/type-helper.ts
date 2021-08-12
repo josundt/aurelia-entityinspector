@@ -1,5 +1,5 @@
 import { singleton } from "aurelia-framework";
-import { ComplexType, EntityKind, ReferenceObject } from "../contracts/contracts";
+import { ComplexType, EntityKind, ReferenceObject } from "../contracts/contracts.js";
 
 export interface ITypeHelper {
     isPlainObject(o: any): o is object;

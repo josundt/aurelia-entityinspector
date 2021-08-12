@@ -1,4 +1,4 @@
-import { PropElement } from "../elements/prop";
+import { PropElement } from "../elements/prop.js";
 
 export interface IPropNavigator {
     goToParent(fromProp: PropElement): void;

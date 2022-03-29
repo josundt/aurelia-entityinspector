@@ -7,7 +7,7 @@ export interface ReferenceObject {
     [key: string]: any;
 }
 
-/* eslint-disable id-blacklist */
+/* eslint-disable id-denylist */
 export enum EntityKind {
     object = 0,
     array = 1,
@@ -19,7 +19,7 @@ export enum EntityKind {
     reference = 7,
     unknown = 8
 }
-/* eslint-enable id-blacklist */
+/* eslint-enable id-denylist */
 
 export interface PropertyModel {
     name: string;

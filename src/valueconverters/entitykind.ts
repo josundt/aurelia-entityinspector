@@ -7,7 +7,7 @@ export class EntityKindValueConverter {
     toView(value: EntityKind, capitalize: boolean): string {
         let result = EntityKind[value];
         if (capitalize) {
-            result = `${result.substr(0, 1).toUpperCase()}${result.substring(1)}`;
+            result = `${result.substring(0, 1).toUpperCase()}${result.substring(1)}`;
         }
         return result;
     }

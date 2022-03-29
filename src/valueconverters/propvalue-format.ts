@@ -10,7 +10,7 @@ export class PropvalueFormatValueConverter {
         private readonly stringHelper: IStringHelper
     ) {}
 
-    toView(value: boolean|number|string|Date|any[]|object|null): string {
+    toView(value: boolean | number | string | Date | any[] | object | null): string {
         let result: string;
         if (typeof value === "string") {
             result = `"${value}"`;

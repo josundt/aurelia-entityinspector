@@ -1,0 +1,17 @@
+{
+	"recommendations": [
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "pflannery.vscode-versionlens",
+    "stylelint.vscode-stylelint",
+    "htmlhint.vscode-htmlhint"
+  ],
+  "unwantedRecommendations": [
+    "msjsdiag.debugger-for-chrome", // Now built-in to vscode
+    "ms-vscode.vscode-typescript-tslint-plugin",
+		"eg2.tslint",
+    "glen-84.sass-lint",
+    "mkaufman.htmlhint",
+    "ctf0.htmlhint"
+  ]
+}

@@ -51,11 +51,11 @@ export class StringHelper {
 
 
             result = result.replace(
-                new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "gm"),
+                new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "ugm"),
                 (substring, ...groups: string[]) => groups[0] + String(arg) + groups[2]
             );
         }
-        result = result.replace(/\{\{/g, "{").replace(/\}\}/g, "}");
+        result = result.replace(/\{\{/ug, "{").replace(/\}\}/ug, "}");
         return result;
     }
 

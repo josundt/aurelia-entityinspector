@@ -60,7 +60,7 @@ export class PropElement {
     }
 
     get childPropListElement(): PropListElement | null {
-        // eslint-disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         return (this.element.childElementCount > 1) ? (this.element.children[1] as any)["au"]["controller"]["viewModel"] : null;
     }
 

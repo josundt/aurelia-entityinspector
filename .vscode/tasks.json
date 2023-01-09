@@ -1,0 +1,117 @@
+{
+  "version": "2.0.0",
+  "runner": "terminal",
+  "tasks": [
+    {
+      "label": "compile:and:lint",
+      "dependsOn": ["compile:ts", "lint:style", "lint:html", "lint:ts"],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "compile",
+      "dependsOn": ["compile:ts"],
+      "dependsOrder": "parallel",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "compile:ts",
+      "type": "npm",
+      "script": "compile:ts",
+      "problemMatcher": "$tsc",
+      "group": "build"
+    },
+    {
+      "label": "lint",
+      "dependsOn": ["lint:style", "lint:html", "lint:ts"],
+      "dependsOrder": "parallel",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "lint:ts",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "eslint",
+        "src",
+        "--format",
+        "stylish",
+        "--ext",
+        ".ts,.tsx",
+      ],
+      "group": "build",
+      "problemMatcher": "$eslint-stylish"
+    },
+    {
+      "label": "lint:style",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "stylelint",
+        "'**/*.{css,scss}'",
+        "-f",
+        "unix",
+        "--allow-empty-input"
+      ],
+      "group": "build",
+      "problemMatcher": {
+        "fileLocation": "absolute",
+        "owner": "Stylelint",
+        "source": "Stylelint",
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+): (.+ \\((.*)\\)) \\[(error|warning|info)\\]$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4,
+          "code": 5,
+          "severity": 6
+        }
+      }
+    },
+    {
+      "label": "lint:html",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "htmlhint",
+        "src",
+        "-c",
+        "./node_modules/@josundt/htmlhint-config/.htmlhintrc",
+        "--format",
+        "compact",
+        "--ignore",
+        "**/*-svg.html"
+      ],
+      "group": "build",
+      "problemMatcher": {
+        "applyTo": "allDocuments",
+        "severity": "error",
+        "fileLocation": "absolute",
+        "owner": "htmlhint",
+        "source": "",
+        "pattern": [
+          {
+            "regexp": "(.*): line (\\d+), col (\\d+), (.*) - (.*) \\((.+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            //"severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        ]
+      }
+    }
+  ]
+}

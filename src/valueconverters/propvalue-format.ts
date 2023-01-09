@@ -26,17 +26,18 @@ export class PropvalueFormatValueConverter {
                 str.padStart(value.getSeconds(), 2, "0"),
                 value.getTimezoneOffset() < 0 ? "+" : "-",
                 str.padStart(Math.floor(Math.abs(value.getTimezoneOffset()) / 60), 2, "0"),
-                str.padStart(Math.floor(Math.abs(value.getTimezoneOffset()) % 60), 2, "0"));
+                str.padStart(Math.floor(Math.abs(value.getTimezoneOffset()) % 60), 2, "0")
+            );
         } else if (value instanceof Array) {
             result = `Array [${value.length}]`;
         } else if (this.typeHelper.isPlainObject(value)) {
             const propCount = Object.keys(value).length;
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             if (propCount === 1 && (value as any)["$ref"]) {
-                // eslint-disable-next-line
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access
                 result = `{ $ref: ${(value as any)["$ref"]} }`;
             } else {
-                // eslint-disable-next-line
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
                 const id: string = (value as any)["$id"];
                 const idString: string = id ? `#${id} ` : "";
                 result = `Object ${idString}{${propCount}}`;

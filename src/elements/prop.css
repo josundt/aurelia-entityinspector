@@ -7,8 +7,8 @@ ei-prop {
     padding-left: 0;
 }
 
-ei-prop:before {
-    content:"\25BA";
+ei-prop::before {
+    content: '\25BA';
     color: transparent;
     font-size: 21px;
     line-height: 20px;
@@ -17,11 +17,12 @@ ei-prop:before {
     width: 7px;
 }
 
-ei-prop.collapsible:before {
-    content:"\25BE";
-    color: #FF7373;
+ei-prop.collapsible::before {
+    content: '\25BE';
+    color: #ff7373;
 }
-ei-prop.collapsible.collapsed:before {
-    content:"\25B8";
-    color: #FF7373;
+
+ei-prop.collapsible.collapsed::before {
+    content: '\25b8';
+    color: #ff7373;
 }

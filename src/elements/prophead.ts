@@ -29,8 +29,8 @@ export class PropHeadElement {
         let result: string | undefined = "";
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (this.typeHelper.isComplexType(this.value) && (this.value as any)["$id"]) {
-            // eslint-disable-next-line
-            result =  (this.value as any)["$id"];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            result = (this.value as any)["$id"];
         }
         return result;
     }
@@ -57,7 +57,7 @@ export class PropHeadElement {
     get rootElem(): HTMLElement {
         // It should be possible to say this.element.shadowRoot?
         if (!this._rootElem) {
-            let root: HTMLElement  = this.element;
+            let root: HTMLElement = this.element;
             let curr: HTMLElement | null = this.element;
             while ((curr = root.parentElement) !== null) {
                 root = curr;

@@ -5,9 +5,10 @@ ei-propvalue.reference {
     font-style: italic;
     cursor: pointer;
 }
-ei-propvalue.reference:before {
-    content:"\25BA\0020";
-    color: #FF7373;
+
+ei-propvalue.reference::before {
+    content: '\25BA\0020';
+    color: #ff7373;
 }
 
 ei-container.dark ei-propvalue.unknown   { color: #569cd6; }
@@ -18,15 +19,14 @@ ei-container.dark ei-propvalue.string    { color: #c89178; }
 ei-container.dark ei-propvalue.number    { color: #b5cea8; }
 ei-container.dark ei-propvalue.object    { color: #3ac9b0; }
 ei-container.dark ei-propvalue.array     { color: #3ac9b0; }
-ei-container.dark ei-propvalue.reference { color: #FF0000; }
+ei-container.dark ei-propvalue.reference { color: #f00; }
 
-ei-container.light ei-propvalue.unknown   { color: #0000ff; }
-ei-container.light ei-propvalue.null      { color: #0000ff; }
+ei-container.light ei-propvalue.unknown   { color: #00f; }
+ei-container.light ei-propvalue.null      { color: #00f; }
 ei-container.light ei-propvalue.date      { color: #795e26; }
 ei-container.light ei-propvalue.boolean   { color: #267f99; }
 ei-container.light ei-propvalue.string    { color: #a31515; }
 ei-container.light ei-propvalue.number    { color: #09885a; }
 ei-container.light ei-propvalue.object    { color: #267f99; }
 ei-container.light ei-propvalue.array     { color: #267f99; }
-ei-container.light ei-propvalue.reference { color: #FF0000; }
-
+ei-container.light ei-propvalue.reference { color: #f00; }

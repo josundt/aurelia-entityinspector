@@ -26,7 +26,7 @@ export class TypeHelper implements ITypeHelper {
         } else if (value as any instanceof Array) {
             result = EntityKind.array;
         } else if (this.isPlainObject(value)) {
-            // eslint-disable-next-line
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/consistent-type-assertions
             result = Object.keys(value).length === 1 && (<any>value)["$ref"] ? EntityKind.reference : EntityKind.object;
         } else if (typeof value === "string") {
             result = EntityKind.string;
@@ -41,7 +41,7 @@ export class TypeHelper implements ITypeHelper {
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    isComplexType(value: any): value is ComplexType  {
+    isComplexType(value: any): value is ComplexType {
         return value instanceof Array || this.isPlainObject(value);
     }
 

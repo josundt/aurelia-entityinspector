@@ -16,6 +16,6 @@ ei-container.dark ei-propname.id-prop {
 }
 
 ei-container.light ei-propname.id-prop {
-    color: #F00;
+    color: #f00;
     font-style: italic;
 }

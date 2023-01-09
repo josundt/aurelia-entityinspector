@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-vendor-prefix */
 ei-prophead {
     display: inline-block;
     outline: none;
@@ -16,7 +17,7 @@ ei-container.dark ei-prop.collapsible > ei-prophead:focus {
 
 ei-container.light ei-prop.collapsible > ei-prophead:hover,
 ei-container.light ei-prop.collapsible > ei-prophead:focus {
-    background-color: #CCC;
+    background-color: #ccc;
 }
 
 ei-prop.collapsible > ei-prophead:hover,

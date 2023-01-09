@@ -1,3 +1,34 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "files.associations": {
+    ".htmlhintrc": "jsonc",
+    ".stylelintrc": "jsonc"
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    ".vscode": false,
+    "build": false,
+    "dist": false,
+    "node_modules": false
+  },
+  "htmlhint.configFile": "./node_modules/@josundt/htmlhint-config/.htmlhintrc",
+  "javascript.preferences.quoteStyle": "double",
+  "scss.validate": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true
+  },
+  "stylelint.validate": ["css", "scss"],
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.quoteStyle": "double",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "versionlens.suggestions.showOnStartup": true
 }

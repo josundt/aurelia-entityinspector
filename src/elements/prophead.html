@@ -5,10 +5,12 @@
     <require from="./propvalue"></require>
     <ei-propname
         value.bind="name"
-        class="${name==='$id'?'id-prop':''}"></ei-propname>
+        class="${name==='$id'?'id-prop':''}"
+    ></ei-propname>
     <ei-propvalue
         value.bind="value"
         kind.bind="kind"
         click.delegate="onValueClicked()"
-        class="${kind | entitykind}"></ei-propvalue>
+        class="${kind | entitykind}"
+    ></ei-propvalue>
 </template>

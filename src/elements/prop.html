@@ -8,10 +8,12 @@
         kind.bind="kind"
         tabindex="${collapsible ? 0 : -1}"
         click.delegate="toggleCollapsed()"
-        keydown.delegate="onKeydown($event)"></ei-prophead>
+        keydown.delegate="onKeydown($event)"
+    ></ei-prophead>
     <ei-proplist
         if.bind="collapsible &amp;&amp; !collapsed"
         owner.bind="value"
         class="au-animate"
-        accordionmode.bind="accordionmode"></ei-proplist>
+        accordionmode.bind="accordionmode"
+    ></ei-proplist>
 </template>

@@ -11,22 +11,34 @@ ei-proplist.au-enter {
 }
 
 ei-proplist.au-enter-active {
-    animation: slide-in .2s;
+    animation: slide-in 0.2s;
 }
 
 ei-proplist.au-leave-active {
-    animation: slide-out .13s;
+    animation: slide-out 0.13s;
 }
 
 /* CSS3-Animations */
 @keyframes slide-in {
-    0%   { max-height: 0; }
-    75%  { max-height: 500px; }
-    100% { max-height: 1000px; }
+    0% {
+        max-height: 0;
+    }
+    75% {
+        max-height: 500px;
+    }
+    100% {
+        max-height: 1000px;
+    }
 }
 
 @keyframes slide-out {
-    0%   { max-height: 1000px; }
-    25%  { max-height: 500px; }
-    100% { max-height: 0; }
+    0% {
+        max-height: 1000px;
+    }
+    25% {
+        max-height: 500px;
+    }
+    100% {
+        max-height: 0;
+    }
 }

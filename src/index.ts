@@ -1,7 +1,5 @@
-import { FrameworkConfiguration, PLATFORM } from "aurelia-framework";
+import { PLATFORM, type FrameworkConfiguration } from "aurelia-framework";
 
 export function configure(aurelia: FrameworkConfiguration): void {
-    aurelia.globalResources([
-        PLATFORM.moduleName("./entityinspector"),
-    ]);
+    aurelia.globalResources([PLATFORM.moduleName("./entityinspector")]);
 }

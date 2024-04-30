@@ -1,12 +1,24 @@
-
 export interface IStringHelper {
-    padStart(str: string | number, maxLength: number, fillString?: string): string;
-    padEnd(str: string | number, maxLength: number, fillString?: string): string;
+    padStart(
+        str: string | number,
+        maxLength: number,
+        fillString?: string
+    ): string;
+    padEnd(
+        str: string | number,
+        maxLength: number,
+        fillString?: string
+    ): string;
     format(formatString: string, ...formatArgs: any[]): string;
 }
 
 export class StringHelper {
-    private pad(str: string | number, maxLength: number, fillString: string, end: boolean): string {
+    private pad(
+        str: string | number,
+        maxLength: number,
+        fillString: string,
+        end: boolean
+    ): string {
         const s = String(str);
 
         if (s.length >= maxLength) {
@@ -27,16 +39,22 @@ export class StringHelper {
         }
         truncatedStringFiller = truncatedStringFiller.slice(0, fillLen);
 
-        return end ?
-            s + truncatedStringFiller :
-            truncatedStringFiller + s;
+        return end ? s + truncatedStringFiller : truncatedStringFiller + s;
     }
 
-    padStart(str: string | number, maxLength: number, fillString: string = " "): string {
+    padStart(
+        str: string | number,
+        maxLength: number,
+        fillString: string = " "
+    ): string {
         return this.pad(str, maxLength, fillString, false);
     }
 
-    padEnd(str: string | number, maxLength: number, fillString: string = " "): string {
+    padEnd(
+        str: string | number,
+        maxLength: number,
+        fillString: string = " "
+    ): string {
         return this.pad(str, maxLength, fillString, true);
     }
 
@@ -47,16 +65,15 @@ export class StringHelper {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             arg = formatArgs[i];
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            arg = (arg === null || arg === undefined) ? "" : arg;
-
+            arg = arg === null || arg === undefined ? "" : arg;
 
             result = result.replace(
                 new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "ugm"),
-                (substring, ...groups: string[]) => groups[0] + String(arg) + groups[2]
+                (substring, ...groups: string[]) =>
+                    groups[0] + String(arg) + groups[2]
             );
         }
-        result = result.replace(/\{\{/ug, "{").replace(/\}\}/ug, "}");
+        result = result.replace(/\{\{/gu, "{").replace(/\}\}/gu, "}");
         return result;
     }
-
 }

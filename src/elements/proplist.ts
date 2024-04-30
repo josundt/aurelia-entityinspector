@@ -1,16 +1,22 @@
-import { bindable, computedFrom, customElement, inject } from "aurelia-framework";
-import { ComplexType, PropertyModel } from "../contracts/contracts.js";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
-import { PropElement } from "./prop.js";
+import {
+    bindable,
+    computedFrom,
+    customElement,
+    inject
+} from "aurelia-framework";
+import type { ComplexType, PropertyModel } from "../contracts/contracts.js";
+import { TypeHelper, type ITypeHelper } from "../utils/type-helper.js";
+import { VmUtil, type IVmUtil } from "../utils/vm-util.js";
+import type { PropElement } from "./prop.js";
 
-@inject(Element, TypeHelper)
+@inject(Element, TypeHelper, VmUtil)
 @customElement("ei-proplist")
 export class PropListElement {
-
     constructor(
         private readonly element: HTMLElement,
-        private readonly typeHelper: ITypeHelper
-    ) { }
+        private readonly typeHelper: ITypeHelper,
+        private readonly vmUtil: IVmUtil
+    ) {}
 
     @bindable
     owner?: ComplexType;
@@ -19,23 +25,30 @@ export class PropListElement {
     accordionmode?: boolean;
 
     get childPropElements(): PropElement[] {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-        return this.toArray(this.element.children).map(c => (c as any)["au"]["controller"]["viewModel"]);
+        return Array.from(this.element.children).map(
+            c => this.vmUtil.getVm<PropElement>(c)!
+        );
     }
 
     get parentPropElement(): PropElement {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-        return (this.element.parentElement as any)["au"]["controller"]["viewModel"];
+        return this.vmUtil.getVm<PropElement>(this.element.parentElement)!;
     }
 
     @computedFrom("owner")
     get props(): PropertyModel[] {
-        const propNames = this.owner && (this.typeHelper.isPlainObject(this.owner) || (this.owner as any) instanceof Array) ? Object.keys(this.owner) : [];
+        const propNames =
+            this.owner &&
+            (this.typeHelper.isPlainObject(this.owner) ||
+                (this.owner as any) instanceof Array)
+                ? Object.keys(this.owner)
+                : [];
         return propNames.map(n => {
             const value = this.owner ? this.owner[n] : undefined;
             let hasChildren = false;
             if (this.typeHelper.isComplexType(value)) {
-                hasChildren = Object.keys(value).length > 0 && !this.typeHelper.isReferenceObject(value);
+                hasChildren =
+                    Object.keys(value).length > 0 &&
+                    !this.typeHelper.isReferenceObject(value);
             }
             return {
                 name: n,
@@ -46,13 +59,4 @@ export class PropListElement {
             } as PropertyModel;
         });
     }
-
-    private toArray(nodeList: NodeList | HTMLCollection | null | undefined): HTMLElement[] {
-        const result: HTMLElement[] = [];
-        for (let i = 0; nodeList && i < nodeList.length; i++) {
-            result.push(nodeList.item(i) as HTMLElement);
-        }
-        return result;
-    }
-
 }

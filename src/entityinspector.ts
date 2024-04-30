@@ -1,13 +1,18 @@
-import { bindable, computedFrom, customElement, inject, useShadowDOM } from "aurelia-framework";
-import { EntityKind, EntityType } from "./contracts/contracts.js";
-import { PropElement } from "./elements/prop.js";
-import { ITypeHelper, TypeHelper } from "./utils/type-helper.js";
+import {
+    bindable,
+    computedFrom,
+    customElement,
+    inject,
+    useShadowDOM
+} from "aurelia-framework";
+import type { EntityKind, EntityType } from "./contracts/contracts.js";
+import type { PropElement } from "./elements/prop.js";
+import { TypeHelper, type ITypeHelper } from "./utils/type-helper.js";
 
 @inject(Element, TypeHelper)
 @customElement("jux-entityinspector")
 @useShadowDOM()
 export class EntityinspectorElement {
-
     constructor(
         private readonly element: HTMLElement,
         private readonly typeHelper: ITypeHelper
@@ -59,18 +64,23 @@ export class EntityinspectorElement {
 
     @computedFrom("value")
     get isComplexType(): boolean {
-        return this.typeHelper.isPlainObject(this.value) || (this.value as any) instanceof Array;
+        return (
+            this.typeHelper.isPlainObject(this.value) ||
+            (this.value as any) instanceof Array
+        );
     }
 
     get childPropElement(): PropElement {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-        return (this.element.querySelector(":scope > ei-prop") as any)["au"]["controller"]["viewModel"];
+        return (this.element.querySelector(":scope > ei-prop") as any)["au"][
+            "controller"
+        ]["viewModel"];
     }
 
     collapseAll(): void {
         const propList = this.childPropElement.childPropListElement;
         if (propList) {
-            propList.childPropElements.forEach(p => p.collapsed = true);
+            propList.childPropElements.forEach(p => (p.collapsed = true));
         }
     }
 }

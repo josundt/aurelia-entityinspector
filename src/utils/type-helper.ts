@@ -1,5 +1,9 @@
 import { singleton } from "aurelia-framework";
-import { ComplexType, EntityKind, ReferenceObject } from "../contracts/contracts.js";
+import {
+    EntityKind,
+    type ComplexType,
+    type ReferenceObject
+} from "../contracts/contracts.js";
 
 export interface ITypeHelper {
     isPlainObject(o: any): o is object;
@@ -10,10 +14,14 @@ export interface ITypeHelper {
 
 @singleton()
 export class TypeHelper implements ITypeHelper {
-
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     isPlainObject(o: any): o is object {
-        return typeof o === "object" && !(o instanceof Date) && !(o instanceof Array) && o !== null;
+        return (
+            typeof o === "object" &&
+            !(o instanceof Date) &&
+            !(o instanceof Array) &&
+            o !== null
+        );
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -23,11 +31,13 @@ export class TypeHelper implements ITypeHelper {
             result = EntityKind.null;
         } else if (value instanceof Date) {
             result = EntityKind.date;
-        } else if (value as any instanceof Array) {
+        } else if ((value as any) instanceof Array) {
             result = EntityKind.array;
         } else if (this.isPlainObject(value)) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/consistent-type-assertions
-            result = Object.keys(value).length === 1 && (<any>value)["$ref"] ? EntityKind.reference : EntityKind.object;
+            result =
+                Object.keys(value).length === 1 && "$ref" in value
+                    ? EntityKind.reference
+                    : EntityKind.object;
         } else if (typeof value === "string") {
             result = EntityKind.string;
         } else if (typeof value === "number") {
@@ -47,6 +57,10 @@ export class TypeHelper implements ITypeHelper {
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     isReferenceObject(value: any): value is ReferenceObject {
-        return !!(this.isComplexType(value) && Object.keys(value).length === 1 && value["$ref"]);
+        return !!(
+            this.isComplexType(value) &&
+            Object.keys(value).length === 1 &&
+            value["$ref"]
+        );
     }
 }

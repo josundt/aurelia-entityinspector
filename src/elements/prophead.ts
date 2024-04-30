@@ -1,14 +1,15 @@
 import { bindable, customElement, inject } from "aurelia-framework";
-import { EntityKind, EntityType } from "../contracts/contracts.js";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
+import type { EntityKind, EntityType } from "../contracts/contracts.js";
+import { TypeHelper, type ITypeHelper } from "../utils/type-helper.js";
+import { VmUtil, type IVmUtil } from "../utils/vm-util.js";
 
-@inject(Element, TypeHelper)
+@inject(Element, TypeHelper, VmUtil)
 @customElement("ei-prophead")
 export class PropHeadElement {
-
     constructor(
         private readonly element: HTMLElement,
-        private readonly typeHelper: ITypeHelper
+        private readonly typeHelper: ITypeHelper,
+        private readonly vmUtil: IVmUtil
     ) {}
 
     @bindable
@@ -21,14 +22,12 @@ export class PropHeadElement {
     kind?: EntityKind;
 
     get parentPropElement(): PropHeadElement {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return (this.element.parentElement as any)["au"]["controller"]["viewModel"] as PropHeadElement;
+        return this.vmUtil.getVm<PropHeadElement>(this.element.parentElement)!;
     }
 
     get objectId(): string | undefined {
         let result: string | undefined = "";
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (this.typeHelper.isComplexType(this.value) && (this.value as any)["$id"]) {
+        if (this.typeHelper.isComplexType(this.value) && "$id" in this.value) {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             result = (this.value as any)["$id"];
         }
@@ -68,19 +67,20 @@ export class PropHeadElement {
     }
 
     onValueClicked(): void {
-        const objectReferenceId = this.objectReferenceId;
+        const { objectReferenceId } = this;
         if (objectReferenceId) {
-            const referencedElem: HTMLElement = this.rootElem.querySelector(`ei-prophead[data-objectid='${objectReferenceId}']`)!;
+            const referencedElem: HTMLElement = this.rootElem.querySelector(
+                `ei-prophead[data-objectid='${objectReferenceId}']`
+            )!;
             referencedElem.focus();
             referencedElem.scrollIntoView();
         }
     }
 
     attached(): void {
-        const objectId = this.objectId;
+        const { objectId } = this;
         if (objectId) {
             this.element.setAttribute("data-objectid", objectId);
         }
     }
-
 }

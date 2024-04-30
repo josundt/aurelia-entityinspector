@@ -1,27 +1,33 @@
-import { bindable, bindingMode, computedFrom, customElement, inject } from "aurelia-framework";
-import { EntityKind, EntityType } from "../contracts/contracts.js";
-import { IPropNavigator, PropNavigator } from "../utils/prop-navigator.js";
-import { ITypeHelper, TypeHelper } from "../utils/type-helper.js";
-import { PropHeadElement } from "./prophead.js";
-import { PropListElement } from "./proplist.js";
+import {
+    bindable,
+    bindingMode,
+    computedFrom,
+    customElement,
+    inject
+} from "aurelia-framework";
+import type { EntityKind, EntityType } from "../contracts/contracts.js";
+import { PropNavigator, type IPropNavigator } from "../utils/prop-navigator.js";
+import { TypeHelper, type ITypeHelper } from "../utils/type-helper.js";
+import { VmUtil, type IVmUtil } from "../utils/vm-util.js";
+import type { PropHeadElement } from "./prophead.js";
+import type { PropListElement } from "./proplist.js";
 
-enum Key {
-    tab = "Tab",
-    enter = "Enter",
-    arrowLeft = "ArrowLeft",
-    arrowUp = "ArrowUp",
-    arrowRight = "ArrowRight",
-    arrowDown = "ArrowDown"
-}
+type Key =
+    | "Tab"
+    | "Enter"
+    | "ArrowLeft"
+    | "ArrowUp"
+    | "ArrowRight"
+    | "ArrowDown";
 
-@inject(Element, TypeHelper, PropNavigator)
+@inject(Element, TypeHelper, PropNavigator, VmUtil)
 @customElement("ei-prop")
 export class PropElement {
-
     constructor(
         private readonly element: HTMLElement,
         private readonly typeHelper: ITypeHelper,
-        private readonly propNav: IPropNavigator
+        private readonly propNav: IPropNavigator,
+        private readonly vmUtil: IVmUtil
     ) {}
 
     @bindable
@@ -48,20 +54,22 @@ export class PropElement {
         let result: PropListElement | null = null;
         const parent = this.element.parentElement;
         if (parent && parent.tagName.toLowerCase() === "ei-proplist") {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            result = (parent as any)["au"]["controller"]["viewModel"] as PropListElement | null;
+            result = this.vmUtil.getVm<PropListElement>(parent);
         }
         return result;
     }
 
     get childPropHeadElement(): PropHeadElement {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return (this.element.firstElementChild as any)["au"]["controller"]["viewModel"] as PropHeadElement;
+        return (this.element.firstElementChild as any)["au"]["controller"][
+            "viewModel"
+        ] as PropHeadElement;
     }
 
     get childPropListElement(): PropListElement | null {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-        return (this.element.childElementCount > 1) ? (this.element.children[1] as any)["au"]["controller"]["viewModel"] : null;
+        return this.element.childElementCount > 1
+            ? this.vmUtil.getVm<PropListElement>(this.element.children[1])
+            : null;
     }
 
     toggleCollapsed(): void {
@@ -70,24 +78,24 @@ export class PropElement {
 
     onKeydown(event: KeyboardEvent): boolean {
         let preventDefault = false;
-        switch (event.key) {
+        const key = event.key as Key;
+        switch (key) {
+            case "Tab": {
+                // if (event.shiftKey) {
+                //     this.propNav.goToPrev(this);
+                // } else {
+                //     this.propNav.goToNext(this);
+                // }
+                break;
+            }
 
-            // case Key.tab: {
-            //     if (event.shiftKey) {
-            //         this.propNav.goToPrev(this);
-            //     } else {
-            //         this.propNav.goToNext(this);
-            //     }
-            //     break;
-            // }
-
-            case Key.enter: {
+            case "Enter": {
                 this.toggleCollapsed();
                 preventDefault = true;
                 break;
             }
 
-            case Key.arrowLeft: {
+            case "ArrowLeft": {
                 if (!this.collapsed) {
                     this.propNav.setCollapsed(this, true);
                 } else {
@@ -97,7 +105,7 @@ export class PropElement {
                 break;
             }
 
-            case Key.arrowRight: {
+            case "ArrowRight": {
                 if (this.collapsed) {
                     this.propNav.setCollapsed(this, false);
                 } else {
@@ -107,13 +115,13 @@ export class PropElement {
                 break;
             }
 
-            case Key.arrowDown: {
+            case "ArrowDown": {
                 this.propNav.goToNextSibling(this);
                 preventDefault = true;
                 break;
             }
 
-            case Key.arrowUp: {
+            case "ArrowUp": {
                 this.propNav.goToPrevSibling(this);
                 preventDefault = true;
                 break;

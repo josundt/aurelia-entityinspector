@@ -8,13 +8,17 @@
   "scripts": {
     "compile": "npm run compile:ts",
     "compile:ts": "tsc -p ./tsconfig.json --noemit",
+    "format": "npm run format:html && npm run format:style && npm run format:ts",
+    "format:ts": "prettier --config .prettierrc src/**/*.ts --write",
+    "format:html": "prettier --config .prettierrc src/**/*.{html,ejs} --write",
+    "format:style": "prettier --config .prettierrc src/**/*.{css,scss} --write",
     "lint": "npm run lint:html && npm run lint:style && npm run lint:ts",
     "lint:ts": "eslint ./src --format visualstudio --ext .ts,.tsx",
     "lint:style": "stylelint src/**/*.{css,scss} --allow-empty-input -f unix",
     "lint:html": "htmlhint src -c ./node_modules/@josundt/htmlhint-config/.htmlhintrc --format unix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.es5-amd.json && tsc -p tsconfig.es5-cjs.json && tsc -p tsconfig.es5-umd.json && tsc -p tsconfig.es5-esm.json && tsc -p tsconfig.es2015-esm.json && node ./build/build.js",
-    "clean": "rimraf ./dist/**/*"
+    "clean": "rimraf -g ./dist/**/*"
   },
   "files": [
     "src",
@@ -33,13 +37,13 @@
   },
   "homepage": "https://github.com/josundt/aurelia-entityinspector#readme",
   "devDependencies": {
-    "@josundt/eslint-config": "4.9.7",
-    "@josundt/htmlhint-config": "1.0.3",
-    "@josundt/stylelint-config": "1.0.4",
+    "@josundt/eslint-config": "5.4.1",
+    "@josundt/htmlhint-config": "1.0.5",
+    "@josundt/stylelint-config": "2.4.1",
     "aurelia-framework": "^1.4.1",
-    "glob": "8.0.3",
-    "rimraf": "3.0.2",
-    "typescript": "4.9.4"
+    "glob": "10.3.12",
+    "rimraf": "5.0.5",
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "aurelia-framework": "^1.4.1"

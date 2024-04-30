@@ -1,4 +1,4 @@
-import { PropElement } from "../elements/prop.js";
+import type { PropElement } from "../elements/prop.js";
 
 export interface IPropNavigator {
     goToParent(fromProp: PropElement): void;
@@ -9,7 +9,6 @@ export interface IPropNavigator {
 }
 
 export class PropNavigator implements IPropNavigator {
-
     goToParent(fromProp: PropElement): void {
         const parentPropList = fromProp.parentPropListElement;
         if (parentPropList) {
@@ -19,7 +18,9 @@ export class PropNavigator implements IPropNavigator {
 
     goToChild(fromProp: PropElement): void {
         const childPropList = fromProp.childPropListElement;
-        const childPropListElems = childPropList ? childPropList.childPropElements.filter(cpe => cpe.collapsible) : null;
+        const childPropListElems = childPropList
+            ? childPropList.childPropElements.filter(cpe => cpe.collapsible)
+            : null;
         if (childPropListElems?.length) {
             childPropListElems[0].childPropHeadElement.focus();
         }
@@ -28,7 +29,9 @@ export class PropNavigator implements IPropNavigator {
     goToPrevSibling(fromProp: PropElement): void {
         const parentPropList = fromProp.parentPropListElement;
         if (parentPropList) {
-            const selectableProps = parentPropList.childPropElements.filter(cpe => cpe.collapsible);
+            const selectableProps = parentPropList.childPropElements.filter(
+                cpe => cpe.collapsible
+            );
             const currIndex = selectableProps.indexOf(fromProp);
             if (currIndex > 0) {
                 selectableProps[currIndex - 1].childPropHeadElement.focus();
@@ -39,7 +42,9 @@ export class PropNavigator implements IPropNavigator {
     goToNextSibling(fromProp: PropElement): void {
         const parentPropList = fromProp.parentPropListElement;
         if (parentPropList) {
-            const selectableProps = parentPropList.childPropElements.filter(cpe => cpe.collapsible);
+            const selectableProps = parentPropList.childPropElements.filter(
+                cpe => cpe.collapsible
+            );
             const currIndex = selectableProps.indexOf(fromProp);
             if (currIndex < selectableProps.length - 1) {
                 selectableProps[currIndex + 1].childPropHeadElement.focus();
@@ -47,7 +52,11 @@ export class PropNavigator implements IPropNavigator {
         }
     }
 
-    setCollapsed(prop: PropElement, value: boolean = true, recursive: boolean = false): void {
+    setCollapsed(
+        prop: PropElement,
+        value: boolean = true,
+        recursive: boolean = false
+    ): void {
         if (prop.collapsible) {
             if (value && !prop.collapsed) {
                 prop.collapsed = true;
@@ -56,7 +65,10 @@ export class PropNavigator implements IPropNavigator {
                 if (prop.accordionmode) {
                     const parentPropList = prop.parentPropListElement;
                     if (parentPropList) {
-                        const collapsibleProps = parentPropList.childPropElements.filter(cpe => cpe.collapsible);
+                        const collapsibleProps =
+                            parentPropList.childPropElements.filter(
+                                cpe => cpe.collapsible
+                            );
                         const currIndex = collapsibleProps.indexOf(prop);
                         if (currIndex >= 0) {
                             collapsibleProps.forEach((p, idx) => {
@@ -78,9 +90,11 @@ export class PropNavigator implements IPropNavigator {
         if (!prop.accordionmode) {
             return;
         }
-        const collapsibleChildProps = prop.childPropListElement ?
-            prop.childPropListElement.childPropElements.filter(p => p.collapsible) :
-            [];
+        const collapsibleChildProps = prop.childPropListElement
+            ? prop.childPropListElement.childPropElements.filter(
+                  p => p.collapsible
+              )
+            : [];
 
         for (const childProp of collapsibleChildProps) {
             this.expandChildrenRecursive(childProp);

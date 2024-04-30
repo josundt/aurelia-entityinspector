@@ -8,7 +8,7 @@ ei-prop {
 }
 
 ei-prop::before {
-    content: '\25BA';
+    content: "\25BA";
     color: transparent;
     font-size: 21px;
     line-height: 20px;
@@ -18,11 +18,11 @@ ei-prop::before {
 }
 
 ei-prop.collapsible::before {
-    content: '\25BE';
+    content: "\25BE";
     color: #ff7373;
 }
 
 ei-prop.collapsible.collapsed::before {
-    content: '\25b8';
+    content: "\25b8";
     color: #ff7373;
 }

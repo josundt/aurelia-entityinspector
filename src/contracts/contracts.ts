@@ -1,9 +1,16 @@
-export type EntityType = object | any[] | Date | string | number | boolean | null;
+export type EntityType =
+    | object
+    | any[]
+    | Date
+    | string
+    | number
+    | boolean
+    | null;
 
 export type ComplexType = (object | any[]) & Record<string, EntityType>;
 
 export interface ReferenceObject {
-    "$ref": string;
+    $ref: string;
     [key: string]: any;
 }
 

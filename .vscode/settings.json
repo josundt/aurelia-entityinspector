@@ -1,8 +1,46 @@
 {
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
-    }
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.associations": {
     ".htmlhintrc": "jsonc",
@@ -19,6 +57,7 @@
     "dist": false,
     "node_modules": false
   },
+  "htmlhint.documentSelector": ["html", "ejs"],
   "htmlhint.configFile": "./node_modules/@josundt/htmlhint-config/.htmlhintrc",
   "javascript.preferences.quoteStyle": "double",
   "scss.validate": false,

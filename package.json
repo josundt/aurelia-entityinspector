@@ -5,6 +5,7 @@
   "main": "./dist/es5-umd/index.js",
   "module": "./dist/es5-esm/index.js",
   "es2015": "./dist/es2015-esm/index.js",
+  "type": "module",
   "scripts": {
     "compile": "npm run compile:ts",
     "compile:ts": "tsc -p ./tsconfig.json --noemit",

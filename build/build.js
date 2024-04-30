@@ -1,6 +1,6 @@
-const glob = require("glob");
-const fs = require("fs");
-const path = require("path");
+import { glob } from "glob";
+import fs from "node:fs";
+import path from "node:path";
 
 function expandFiles(pattern) {
     return new Promise((resolve, reject) => {
@@ -15,24 +15,25 @@ function expandFiles(pattern) {
 }
 
 function copyFile(source, target) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var rd = fs.createReadStream(source);
-        rd.on('error', rejectCleanup);
+        rd.on("error", rejectCleanup);
         var wr = fs.createWriteStream(target);
-        wr.on('error', rejectCleanup);
+        wr.on("error", rejectCleanup);
         function rejectCleanup(err) {
             rd.destroy();
             wr.end();
             reject(err);
         }
-        wr.on('finish', resolve);
+        wr.on("finish", resolve);
         rd.pipe(wr);
     });
 }
 
 function getDestPath(pattern, srcFile, destFolder) {
     const recStartIdx = pattern.indexOf("**");
-    const destPart = recStartIdx > 0 ? srcFile.substring(recStartIdx) : srcFile.substring(2);
+    const destPart =
+        recStartIdx > 0 ? srcFile.substring(recStartIdx) : srcFile.substring(2);
     const result = `${destFolder}${destPart}`.replace(/\/\//g, "/");
     return result;
 }
@@ -53,10 +54,10 @@ expandFiles(srcPattern)
         srcFiles.forEach(sf => {
             const copyPromise = destDirs.map(dd => {
                 const df = getDestPath(srcPattern, sf, dd);
-                return copyFile(sf, df).then(() => `${sf} => ${df}`)
+                return copyFile(sf, df).then(() => `${sf} => ${df}`);
             });
             copyPromises.push(...copyPromise);
-        })
+        });
         return Promise.all(copyPromises);
     })
     .then(lines => {

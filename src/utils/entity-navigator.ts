@@ -50,7 +50,11 @@ export class EntityNavigator implements IEntityNavigator {
                 : elem?.querySelector("ei-prophead") ?? null;
 
         if (referencedElem) {
-            referencedElem.scrollIntoView();
+            referencedElem.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "center"
+            });
             await this.delayAsync(400);
             referencedElem.focus();
         }

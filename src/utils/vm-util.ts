@@ -1,7 +1,10 @@
+import { singleton } from "aurelia-framework";
+
 export interface IVmUtil {
     getVm<T>(elem: Element | null | undefined): T | null;
 }
 
+@singleton()
 export class VmUtil implements IVmUtil {
     getVm<T>(elem: Element | null | undefined): T | null {
         if (!elem) {

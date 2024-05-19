@@ -30,12 +30,11 @@
     <ei-container class="${theme}">
         <ei-prop
             value.bind="value"
-            objectId.bind="objectId"
-            name=""
+            object-id.bind="objectId"
+            name.bind="rootName"
             collapsible.bind="hasChildren"
             collapsed.bind="collapsed"
             accordionmode.bind="accordionmode"
-            id="${objectId | objectId}"
             class="${kind | entitykind} ${hasChildren ? 'collapsible' : ''} ${collapsed ? 'collapsed' : ''}"
         ></ei-prop>
     </ei-container>

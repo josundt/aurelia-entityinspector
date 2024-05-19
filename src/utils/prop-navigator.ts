@@ -1,3 +1,4 @@
+import { singleton } from "aurelia-framework";
 import type { PropElement } from "../elements/prop.js";
 
 export interface IPropNavigator {
@@ -8,6 +9,7 @@ export interface IPropNavigator {
     setCollapsed(prop: PropElement, value?: boolean): void;
 }
 
+@singleton()
 export class PropNavigator implements IPropNavigator {
     goToParent(fromProp: PropElement): void {
         const parentPropList = fromProp.parentPropListElement;

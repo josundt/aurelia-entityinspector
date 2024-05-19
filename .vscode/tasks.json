@@ -41,14 +41,7 @@
       "label": "lint:ts",
       "type": "shell",
       "command": "npx",
-      "args": [
-        "eslint",
-        "src",
-        "--format",
-        "stylish",
-        "--ext",
-        ".ts,.tsx",
-      ],
+      "args": ["eslint", "src", "--format", "stylish", "--ext", ".ts,.tsx"],
       "group": "build",
       "problemMatcher": "$eslint-stylish"
     },
@@ -58,7 +51,7 @@
       "command": "npx",
       "args": [
         "stylelint",
-        "'**/*.{css,scss}'",
+        "'src/**/*.{css,scss}'",
         "-f",
         "unix",
         "--allow-empty-input"

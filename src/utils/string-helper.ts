@@ -1,3 +1,5 @@
+import { singleton } from "aurelia-framework";
+
 export interface IStringHelper {
     padStart(
         str: string | number,
@@ -12,6 +14,7 @@ export interface IStringHelper {
     format(formatString: string, ...formatArgs: any[]): string;
 }
 
+@singleton()
 export class StringHelper {
     private pad(
         str: string | number,

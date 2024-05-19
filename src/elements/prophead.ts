@@ -1,16 +1,20 @@
 import { bindable, customElement, inject } from "aurelia-framework";
 import type { EntityKind, EntityType } from "../contracts/contracts.js";
+import {
+    EntityNavigator,
+    type IEntityNavigator
+} from "../utils/entity-navigator.js";
 import { TypeHelper, type ITypeHelper } from "../utils/type-helper.js";
 import { VmUtil, type IVmUtil } from "../utils/vm-util.js";
-import type { PropElement } from "./prop.js";
 
-@inject(Element, TypeHelper, VmUtil)
+@inject(Element, TypeHelper, VmUtil, EntityNavigator)
 @customElement("ei-prophead")
 export class PropHeadElement {
     constructor(
         private readonly element: HTMLElement,
         private readonly typeHelper: ITypeHelper,
-        private readonly vmUtil: IVmUtil
+        private readonly vmUtil: IVmUtil,
+        private readonly entityNavigator: IEntityNavigator
     ) {}
 
     @bindable
@@ -67,44 +71,24 @@ export class PropHeadElement {
         return this._rootElem;
     }
 
-    private delayAsync(ms: number): Promise<void> {
-        return new Promise(r => setTimeout(r, ms));
-    }
-
     async onValueClicked(): Promise<any> {
         const oId = this.objectReferenceId;
         let referencedElem: HTMLElement | null;
         if (oId) {
             // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
             if (oId.indexOf("#") === 0) {
-                const segments = oId
-                    .split("/")
-                    .map(i => i.replace(/~0/gu, "~").replace(/~1/gu, "/"));
-                let elem: HTMLElement | null = this.rootElem;
-                for (const s of segments) {
-                    elem =
-                        elem?.querySelector(`ei-prop[data-prop='${s}']`) ??
-                        null;
-                    if (elem) {
-                        const vm = this.vmUtil.getVm<PropElement>(elem)!;
-                        if (vm.collapsed) {
-                            vm.collapsed = false;
-                            await this.delayAsync(100);
-                        }
-                    }
-                }
-                referencedElem =
-                    elem === this.rootElem
-                        ? null
-                        : elem?.querySelector("ei-prophead") ?? null;
+                await this.entityNavigator.navigateToEntityAsync(
+                    oId,
+                    this.rootElem
+                );
             } else {
                 referencedElem = this.rootElem.querySelector(
                     `ei-prophead[data-objectid='${oId}']`
                 );
-            }
-            if (referencedElem) {
-                referencedElem.focus();
-                referencedElem.scrollIntoView();
+                if (referencedElem) {
+                    referencedElem.focus();
+                    referencedElem.scrollIntoView();
+                }
             }
         }
     }

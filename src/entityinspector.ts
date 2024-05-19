@@ -18,6 +18,8 @@ export class EntityinspectorElement {
         private readonly typeHelper: ITypeHelper
     ) {}
 
+    rootName: string = "";
+
     @bindable
     value: EntityType | null = null;
 
@@ -36,6 +38,7 @@ export class EntityinspectorElement {
         return String(this.accordionmode) === "true";
     }
 
+    @bindable({ defaultBindingMode: "twoWay" })
     collapsed: boolean = false;
 
     @computedFrom("value")

@@ -1,9 +1,9 @@
 ei-container {
+    display: block;
     color: #678cb1;
     font-family: Consolas, Monaco, "Lucida Console", "Courier New", monospace;
     font-size: 14px;
     line-height: 20px;
-    display: block;
     overflow-x: auto;
     padding: 10px;
     white-space: nowrap;

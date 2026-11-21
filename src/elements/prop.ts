@@ -45,9 +45,9 @@ export class PropElement {
     @bindable
     accordionmode: boolean = false;
 
-    @computedFrom("value")
+    @computedFrom("value", "name")
     get kind(): EntityKind {
-        return this.typeHelper.getKind(this.value);
+        return this.typeHelper.getKind(this.value, this.name);
     }
 
     get parentPropListElement(): PropListElement | null {

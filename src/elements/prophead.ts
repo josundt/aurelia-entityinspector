@@ -41,8 +41,8 @@ export class PropHeadElement {
 
     get objectReferenceId(): string | undefined {
         let result: string | undefined;
-        if (this.typeHelper.isReferenceObject(this.value)) {
-            result = this.value["$ref"];
+        if (this.name === "$ref" && typeof this.value === "string") {
+            result = this.value;
         }
         return result;
     }

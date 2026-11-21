@@ -1,4 +1,5 @@
 import { inject, valueConverter } from "aurelia-framework";
+import { EntityKind } from "../contracts/contracts.ts";
 import { StringHelper, type IStringHelper } from "../utils/string-helper.js";
 import { TypeHelper, type ITypeHelper } from "../utils/type-helper.js";
 
@@ -11,7 +12,8 @@ export class PropvalueFormatValueConverter {
     ) {}
 
     toView(
-        value: boolean | number | string | Date | any[] | object | null
+        value: boolean | number | string | Date | any[] | object | null,
+        kind?: EntityKind
     ): string {
         let result: string;
         if (typeof value === "string") {
@@ -42,16 +44,14 @@ export class PropvalueFormatValueConverter {
             result = `Array [${value.length}]`;
         } else if (this.typeHelper.isPlainObject(value)) {
             const propCount = Object.keys(value).length;
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            if (propCount === 1 && (value as any)["$ref"]) {
-                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access
-                result = `{ $ref: ${(value as any)["$ref"]} }`;
-            } else {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-                const id: string = (value as any)["$id"];
-                const idString: string = id ? `#${id} ` : "";
-                result = `Object ${idString}{${propCount}}`;
-            }
+
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            const id: string = (value as any)["$id"];
+            const idString: string = id ? `#${id} ` : "";
+
+            result = `Object ${idString}{${propCount}}`;
+        } else if (kind === EntityKind.reference) {
+            result = String(value);
         } else {
             result = String(value);
         }

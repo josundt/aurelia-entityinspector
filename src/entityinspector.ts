@@ -62,7 +62,7 @@ export class EntityinspectorElement {
 
     @computedFrom("value")
     get kind(): EntityKind {
-        return this.typeHelper.getKind(this.value);
+        return this.typeHelper.getKind(this.value, this.rootName);
     }
 
     @computedFrom("value")

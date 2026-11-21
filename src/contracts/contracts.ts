@@ -9,11 +9,6 @@ export type EntityType =
 
 export type ComplexType = (object | any[]) & Record<string, EntityType>;
 
-export interface ReferenceObject {
-    $ref: string;
-    [key: string]: any;
-}
-
 /* eslint-disable id-denylist */
 export enum EntityKind {
     object = 0,

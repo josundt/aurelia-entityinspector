@@ -46,14 +46,12 @@ export class PropListElement {
             const value = this.owner ? this.owner[n] : undefined;
             let hasChildren = false;
             if (this.typeHelper.isComplexType(value)) {
-                hasChildren =
-                    Object.keys(value).length > 0 &&
-                    !this.typeHelper.isReferenceObject(value);
+                hasChildren = Object.keys(value).length > 0;
             }
             return {
                 name: n,
                 value: value,
-                kind: this.typeHelper.getKind(value),
+                kind: this.typeHelper.getKind(value, n),
                 hasChildren: hasChildren,
                 collapsed: true
             } as PropertyModel;

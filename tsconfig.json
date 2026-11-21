@@ -1,3 +1,9 @@
+/* TypeScript configuration for root build/test/lint files only */
 {
-  "extends": "./tsconfig.es5-cjs.json"
+  "extends": "@josundt/tsconfig-rules/tsconfig.base.node.nodenext.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true // Problem with "fdir" types
+  },
+  "include": ["./*.ts"]
 }

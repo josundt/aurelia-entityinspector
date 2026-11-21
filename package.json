@@ -1,8 +1,8 @@
 {
   "name": "aurelia-entityinspector",
-  "version": "1.4.3",
+  "version": "1.5.0-rc.1",
   "description": "An Aurelia ui component for viewing JavaScript values (plugin)",
-  "main": "./dist/es5-umd/index.js",
+  "main": "./dist/es2015-esm/index.js",
   "module": "./dist/es2015-esm/index.js",
   "types": "./dist/types/index.d.ts",
   "type": "module",
@@ -13,19 +13,23 @@
     }
   },
   "scripts": {
-    "compile": "npm run compile:ts",
-    "compile:ts": "tsc -p ./tsconfig.json --noemit",
+    "compile": "npm run compile:ts:root && npm run compile:ts:build && npm run compile:ts:src",
+    "compile:ts:root": "tsc -p tsconfig.json --noemit",
+    "compile:ts:build": "tsc -p build/tsconfig.json --noemit",
+    "compile:ts:src": "tsc -p src/tsconfig.json --noemit",
     "format": "npm run format:html && npm run format:style && npm run format:ts",
     "format:ts": "prettier --config .prettierrc src/**/*.ts --write",
     "format:html": "prettier --config .prettierrc src/**/*.{html,ejs} --write",
     "format:style": "prettier --config .prettierrc src/**/*.{css,scss} --write",
-    "lint": "npm run lint:html && npm run lint:style && npm run lint:ts",
-    "lint:ts": "eslint ./src --format visualstudio --ext .ts,.tsx",
-    "lint:style": "stylelint src/**/*.{css,scss} --allow-empty-input -f unix",
+    "lint": "npm run lint:html && npm run lint:style && npm run lint:ts:root && npm run lint:ts:build && npm run lint:ts:src",
+    "lint:ts:root": "eslint ./*.ts -f stylish",
+    "lint:ts:build": "eslint build -f stylish",
+    "lint:ts:src": "eslint src -f stylish",
+    "lint:style": "stylelint **/*.{css,scss} --allow-empty-input -f unix",
     "lint:html": "htmlhint src -c ./node_modules/@josundt/htmlhint-config/.htmlhintrc --format unix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run clean",
-    "build": "tsc -p tsconfig.es5-amd.json && tsc -p tsconfig.es5-cjs.json && tsc -p tsconfig.es5-umd.json && tsc -p tsconfig.es5-esm.json && tsc -p tsconfig.es2015-esm.json && tsc -p tsconfig.es2022-esm.json && node ./build/build.js",
+    "build": "tsc -p src/tsconfig.es2015-esm.json && tsc -p src/tsconfig.es2022-esm.json && node ./build/build.ts",
     "clean": "rimraf -g ./dist/**/*"
   },
   "files": [
@@ -35,7 +39,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/josundt/aurelia-entityinspector.git"
+    "url": "git+https://github.com/josundt/aurelia-entityinspector.git"
   },
   "keywords": [],
   "author": "Jørn Andre Sundt",
@@ -45,14 +49,14 @@
   },
   "homepage": "https://github.com/josundt/aurelia-entityinspector#readme",
   "devDependencies": {
-    "@josundt/eslint-config": "5.4.1",
-    "@josundt/htmlhint-config": "1.0.5",
-    "@josundt/stylelint-config": "2.4.1",
-    "@josundt/tsconfig-rules": "5.2.2",
+    "@josundt/eslint-config": "6.0.2",
+    "@josundt/htmlhint-config": "1.9.2",
+    "@josundt/stylelint-config": "17.6.1",
+    "@josundt/tsconfig-rules": "6.0.0",
+    "@types/node": "^26.6.6",
     "aurelia-framework": "^1.4.1",
-    "glob": "10.3.12",
-    "rimraf": "5.0.5",
-    "typescript": "5.4.5"
+    "rimraf": "6.1.4",
+    "typescript": "6.0.3"
   },
   "peerDependencies": {
     "aurelia-framework": "^1.4.1"

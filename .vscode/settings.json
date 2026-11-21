@@ -59,15 +59,14 @@
   },
   "htmlhint.documentSelector": ["html", "ejs"],
   "htmlhint.configFile": "./node_modules/@josundt/htmlhint-config/.htmlhintrc",
-  "javascript.preferences.quoteStyle": "double",
+  "js/ts.preferences.importModuleSpecifierEnding": "js",
+  "js/ts.preferences.quoteStyle": "double",
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib",
   "scss.validate": false,
   "search.exclude": {
     "**/node_modules": true,
     "dist": true
   },
   "stylelint.validate": ["css", "scss"],
-  "typescript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.quoteStyle": "double",
-  "typescript.tsdk": "./node_modules/typescript/lib",
   "versionlens.suggestions.showOnStartup": true
 }

@@ -47,7 +47,7 @@ export class EntityNavigator implements IEntityNavigator {
         const referencedElem: HTMLElement | null =
             elem === containerElem
                 ? null
-                : elem?.querySelector("ei-prophead") ?? null;
+                : (elem?.querySelector("ei-prophead") ?? null);
 
         if (referencedElem) {
             referencedElem.scrollIntoView({
@@ -61,7 +61,9 @@ export class EntityNavigator implements IEntityNavigator {
     }
 
     private delayAsync(ms: number): Promise<void> {
-        return new Promise(r => setTimeout(r, ms));
+        return new Promise(r => {
+            setTimeout(r, ms);
+        });
     }
 
     private unwrapContainerElem(

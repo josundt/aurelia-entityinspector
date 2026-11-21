@@ -4,7 +4,16 @@
   "tasks": [
     {
       "label": "compile:and:lint",
-      "dependsOn": ["compile:ts", "lint:style", "lint:html", "lint:ts"],
+      "dependsOn": [
+        "compile:ts:root",
+        "compile:ts:build",
+        "compile:ts:src",
+        "lint:style",
+        "lint:html",
+        "lint:ts:root",
+        "lint:ts:build",
+        "lint:ts:src"
+      ],
       "dependsOrder": "parallel",
       "group": {
         "kind": "build",
@@ -16,34 +25,67 @@
     },
     {
       "label": "compile",
-      "dependsOn": ["compile:ts"],
+      "dependsOn": ["compile:ts:root", "compile:ts:build", "compile:ts:src"],
       "dependsOrder": "parallel",
       "presentation": {
         "panel": "dedicated"
       }
     },
     {
-      "label": "compile:ts",
+      "label": "compile:ts:root",
       "type": "npm",
-      "script": "compile:ts",
+      "script": "compile:ts:root",
+      "problemMatcher": "$tsc",
+      "group": "build"
+    },
+    {
+      "label": "compile:ts:build",
+      "type": "npm",
+      "script": "compile:ts:build",
+      "problemMatcher": "$tsc",
+      "group": "build"
+    },
+    {
+      "label": "compile:ts:src",
+      "type": "npm",
+      "script": "compile:ts:src",
       "problemMatcher": "$tsc",
       "group": "build"
     },
     {
       "label": "lint",
-      "dependsOn": ["lint:style", "lint:html", "lint:ts"],
+      "dependsOn": [
+        "lint:style",
+        "lint:html",
+        "lint:ts:root",
+        "lint:ts:build",
+        "lint:ts:src"
+      ],
       "dependsOrder": "parallel",
       "presentation": {
         "panel": "dedicated"
       }
     },
     {
-      "label": "lint:ts",
-      "type": "shell",
-      "command": "npx",
-      "args": ["eslint", "src", "--format", "stylish", "--ext", ".ts,.tsx"],
-      "group": "build",
-      "problemMatcher": "$eslint-stylish"
+      "label": "lint:ts:root",
+      "type": "npm",
+      "script": "lint:ts:root",
+      "problemMatcher": "$eslint-stylish",
+      "group": "build"
+    },
+    {
+      "label": "lint:ts:build",
+      "type": "npm",
+      "script": "lint:ts:build",
+      "problemMatcher": "$eslint-stylish",
+      "group": "build"
+    },
+    {
+      "label": "lint:ts:src",
+      "type": "npm",
+      "script": "lint:ts:src",
+      "problemMatcher": "$eslint-stylish",
+      "group": "build"
     },
     {
       "label": "lint:style",

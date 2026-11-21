@@ -1,0 +1,3 @@
+{
+  "extends": "@josundt/tsconfig-rules/tsconfig.base.web.nodenext.json"
+}

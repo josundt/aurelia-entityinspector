@@ -62,6 +62,7 @@ export class PropHeadElement {
         // It should be possible to say this.element.shadowRoot?
         if (!this._rootElem) {
             let root: HTMLElement = this.element;
+            // eslint-disable-next-line no-useless-assignment
             let curr: HTMLElement | null = this.element;
             while ((curr = root.parentElement) !== null) {
                 root = curr;

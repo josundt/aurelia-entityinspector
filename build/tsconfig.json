@@ -1,0 +1,10 @@
+{
+  "extends": "@josundt/tsconfig-rules/tsconfig.base.node.nodenext.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true
+  }
+}

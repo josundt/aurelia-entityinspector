@@ -83,7 +83,9 @@ export class EntityinspectorElement {
     collapseAll(): void {
         const propList = this.childPropElement.childPropListElement;
         if (propList) {
-            propList.childPropElements.forEach(p => (p.collapsed = true));
+            propList.childPropElements.forEach(p => {
+                p.collapsed = true;
+            });
         }
     }
 }

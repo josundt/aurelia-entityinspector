@@ -28,6 +28,7 @@ export class StringHelper {
             return s;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
         fillString = String(fillString);
         if (fillString.length === 0) {
             fillString = " ";
@@ -68,7 +69,7 @@ export class StringHelper {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             arg = formatArgs[i];
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            arg = arg === null || arg === undefined ? "" : arg;
+            arg = arg ?? "";
 
             result = result.replace(
                 new RegExp(`([^\\{]{0,1})(\\{${i}\\})([^\\}]{0,1})`, "ugm"),

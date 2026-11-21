@@ -53,7 +53,7 @@ export class PropElement {
     get parentPropListElement(): PropListElement | null {
         let result: PropListElement | null = null;
         const parent = this.element.parentElement;
-        if (parent && parent.tagName.toLowerCase() === "ei-proplist") {
+        if (parent?.tagName.toLowerCase() === "ei-proplist") {
             result = this.vmUtil.getVm<PropListElement>(parent);
         }
         return result;
